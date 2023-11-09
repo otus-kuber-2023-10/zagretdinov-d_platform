@@ -90,6 +90,5 @@ kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускае
 
 - Проверяю. Все успешно запускается по 8000 по ссылке http://158.160.101.129:8000/homework.html
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fa7a294d-a3cd-4427-bea8-b03f4213b8bb)
-
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c57ad67f-5854-4764-8b67-e295eb8a46c6)
 
