@@ -30,21 +30,32 @@ __Minikube__.
 _minikube ssh_
 _docker ps_
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/60dfe3f9-1b9d-4f95-84e7-0f82c261c89b)
+
   Проверяю устойчивость к отказам
   _docker rm -f $(docker ps -a -q)_
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/308f081f-920a-44d5-91c1-693360095430)
+
+Соответственно все восстановилось.
 
 __kubectl__
 В виде pod наблюдаю в namespace kube-system:
 _kubectl get pods -n kube-system_
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cfc6d4c1-df7a-4a67-a7dc-6408dc97f86d)
 
 Проверяю устойчивость удаляя все pod с системными компонентами:
 _kubectl delete pod --all -n kube-system_
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/117cf603-5ef6-42a7-b0f9-3cb3bc4f1cfd)
 
 Теперь с помощью команд проверю.
 
 _kubectl get componentstatuses_
 _kubectl get cs_
+
  #### В результате:
+ 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/43b3491b-b892-4a0b-adb5-c2d3141b6742)
 
 
 ### Задание:
