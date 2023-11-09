@@ -26,11 +26,9 @@ __Запуск Minikube__
 ![2023-11-09_01-33](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7ea887b9-38aa-45ad-819c-522dfa164062)
 
 __Minikube__
-  Убеждаюсь что все системные компоненты работают.
-  
-  _minikube ssh_
-  
-  _docker ps_
+Убеждаюсь что все системные компоненты работают.
+_minikube ssh_
+_docker ps_
 
   Проверяю устойчивость к отказам
   _docker rm -f $(docker ps -a -q)_
