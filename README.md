@@ -25,6 +25,27 @@ _Установка и настройка была проведена с пом�
 ![2023-11-09_01-32](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/552aed2c-aab7-41e5-8a26-58c9d281ba1c)
 ![2023-11-09_01-33](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7ea887b9-38aa-45ad-819c-522dfa164062)
 
+* __Minikube__
+Убеждаюсь что все системные компоненты работают.
+_minikube ssh_
+_docker ps_
+
+Проверяю устойчивость к отказам
+_docker rm -f $(docker ps -a -q)_
+
+* __kubectl__
+В виде pod наблюдаю в namespace kube-system:
+_kubectl get pods -n kube-system_
+
+Проверяю устойчивость удаляя все pod с системными компонентами:
+_kubectl delete pod --all -n kube-system_
+
+Теперь с помощью команд проверю.
+
+_kubectl get componentstatuses_
+_kubectl get cs_
+ #### В результате:
+
 
 ### Задание:
 Разберитесь почему все pod в namespace kube-system восстановились после удаления. Укажите причину в описании PR.
@@ -45,5 +66,7 @@ core-dns - реализован как Deployment с параметром replic
 kube-proxy управляется и создается Daemonset.
 
 kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускает kubelet ноды.
+
+
 
 
