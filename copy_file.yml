@@ -31,13 +31,11 @@
         src: kubernetes-intro/web/nginx.conf
         dest: web/nginx.conf
 
-    
+    - name: copy5
+      template:
+        src: kubernetes-intro/web-pod.yaml
+        dest: web/web-pod.yaml
 
-    
-
-
-
-    
        
       
       
