@@ -85,6 +85,11 @@ kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускае
 - Использован для отправки файло на сервер плэйбук copy_file.yml.
 - Для создания и сборки контейнера использован скрипт где написаны команды для данного процесса который в действия приводит плэйбук docker_run.yml 
 - Содержимое dockerfile. согласно задания файл nginx.conf, homework.html  эскпортируется в образ и работает с uid 1001. 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/76d0477c-62f2-4988-9345-fb25d3b7aee8)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fd57987a-25c3-4b56-be9c-7f8ed8ff779e)
 
 - Проверяю. Все успешно запускается по 8000 по ссылке http://158.160.101.129:8000/homework.html
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fa7a294d-a3cd-4427-bea8-b03f4213b8bb)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c57ad67f-5854-4764-8b67-e295eb8a46c6)
 
