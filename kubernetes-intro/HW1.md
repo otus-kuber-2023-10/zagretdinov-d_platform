@@ -23,7 +23,8 @@ __Запуск Minikube__
 ![2023-11-09_01-33](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7ea887b9-38aa-45ad-819c-522dfa164062)
 
 __Kubernetes Dashboard__
-Решил для поробовать установить и подключиться к дашборду кубернетиса. Что получилось:
+
+Решил для себя поробовать установить и подключиться к дашборду кубернетиса. Что получилось:
 
 развертываю по умолчанию
 
@@ -38,8 +39,7 @@ __Kubernetes Dashboard__
 `kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'`
 
 И результате:
-
-
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/24f57ff3-976b-48e9-b27b-55247791cf4b)
 
 __Minikube__.
 Убеждаюсь что все системные компоненты работают.
