@@ -22,6 +22,25 @@ __Запуск Minikube__
 ![2023-11-09_01-32](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/552aed2c-aab7-41e5-8a26-58c9d281ba1c)
 ![2023-11-09_01-33](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7ea887b9-38aa-45ad-819c-522dfa164062)
 
+__Kubernetes Dashboard__
+Решил для поробовать установить и подключиться к дашборду кубернетиса. Что получилось:
+
+развертываю по умолчанию
+
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml`
+
+и теперь чтоб запустить и проверить по быстрому, а так как я все настраиваю в облаке мне нужна не проста ввести команду: 
+
+`kubectl proxy`
+
+а немного ее дополнить.
+
+`kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'`
+
+И результате:
+
+
+
 __Minikube__.
 Убеждаюсь что все системные компоненты работают.
 `minikube ssh`
