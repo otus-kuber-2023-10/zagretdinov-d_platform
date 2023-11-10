@@ -99,33 +99,31 @@ kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускае
 Тоесть изменил свой образ и запушил.
  `docker tag app/web:latest zagretdinov/web:latest`
   `docker push zagretdinov/web:latest`
-
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b01f9687-99f5-44c0-a948-8c8dff00a811)
 
 Помещаю манифест web-pod.yaml в директорию kubernetes-intro и отправляю это файл на сервер.
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ee60908c-4ae9-4b57-9b57-e012bf69fe2a)
+
 На самом сервере запускаю.
-
 `kubectl apply -f web-pod.yaml`
-
 Проверяю:
 `kubectl get pods`
-
 `kubectl get pod web -o yaml`
- 
+ ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cc1f1d3b-fcf5-4c28-90fc-689c30bc09df)
+
  ###kubectl describe
 Проверяю текущее состояние:
-
 `kubectl describe pod web`
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cd590aab-cba4-4eac-9a7b-3f48b54c81cf)
 
 __kubectl describe__ - хороший старт для поиска причин проблем с запуском pod.
 
 Теперь указываю в манифесте несуществующий тег и применяю его.
-
 `kubectl apply -f web-pod.yaml`
-
 Наблюдаю изменения статуса.
-
 `kubectl describe pod web`
-
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/409d58fc-3b1a-47db-97f1-86302e2c104b)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b369521d-4478-4732-83f0-7c764b39f66c)
 
 #### Далее я добавляю в манифест web-pod.yaml описание init контейнера,соответствующим требованиям что расписано в инструкции задания.
 
@@ -133,11 +131,14 @@ __kubectl describe__ - хороший старт для поиска причи�
 Удаляю запущенный pod
 `kubectl delete pod web`
 и запускаю с исправленным манифестом.
-
 `kubectl apply -f web-pod.yaml && kubectl get pods -w`
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cf700b7f-b066-416b-ad8e-888cdce2774f)
 
 Проверяю работу приложения.
 Да кстати перед запуском приложения необходимо остановить запущенный контейнер который был применен и запущен c Dockerfile либо порт иизменить, так как они будут мешать в работе друг другу.
 
 `kubectl port-forward --address 0.0.0.0 pod/web 8000:8000`
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/320953bf-9bab-473b-af9c-40b22cf153fb)
+В итоге наблюдается вот такая интересная картинка.
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/63f554d5-93b3-4061-a03e-5cbfdf2dc3d9)
 
