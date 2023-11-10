@@ -1,0 +1,54 @@
+- name: Start copy docker
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: web
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: web/Dockerfile
+        dest: web/Dockerfile
+    
+    - name: copy2
+      template:
+        src: web/index.html
+        dest: web/index.html
+
+    - name: copy3  
+      template:
+        src: web/homework.html
+        dest: web/homework.html
+    
+    - name: copy4
+      template:
+        src: web/nginx.conf
+        dest: web/nginx.conf
+
+    - name: copy5
+      template:
+        src: web-pod.yaml
+        dest: web/web-pod.yaml
+
+    - name: copy6
+      template:
+        src: frontend-pod.yaml
+        dest: web/frontend-pod.yaml
+
+    - name: copy6
+      template:
+        src: frontend-pod-healthy.yaml
+        dest: web/frontend-pod-healthy.yaml
+    
+
+       
+      
+      
+    
+        
