@@ -27,13 +27,13 @@ __Запуск Minikube__
 
 __Minikube__.
 Убеждаюсь что все системные компоненты работают.
-_minikube ssh_
-_docker ps_
+`minikube ssh`
+`docker ps`
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/60dfe3f9-1b9d-4f95-84e7-0f82c261c89b)
 
   Проверяю устойчивость к отказам
-  _docker rm -f $(docker ps -a -q)_
+  `docker rm -f $(docker ps -a -q)`
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/308f081f-920a-44d5-91c1-693360095430)
 
@@ -41,17 +41,17 @@ _docker ps_
 
 __kubectl__
 В виде pod наблюдаю в namespace kube-system:
-_kubectl get pods -n kube-system_
+`kubectl get pods -n kube-system`
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cfc6d4c1-df7a-4a67-a7dc-6408dc97f86d)
 
 Проверяю устойчивость удаляя все pod с системными компонентами:
-_kubectl delete pod --all -n kube-system_
+`kubectl delete pod --all -n kube-system`
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/117cf603-5ef6-42a7-b0f9-3cb3bc4f1cfd)
 
 Теперь с помощью команд проверю.
 
-_kubectl get componentstatuses_
-_kubectl get cs_
+`kubectl get componentstatuses`
+`kubectl get cs`
 
  #### В результате:
  
@@ -91,4 +91,53 @@ kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускае
 - Проверяю. Все успешно запускается по 8000 по ссылке http://158.160.101.129:8000/homework.html
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fa7a294d-a3cd-4427-bea8-b03f4213b8bb)
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c57ad67f-5854-4764-8b67-e295eb8a46c6)
+
+### Манифест pod
+Для создания pod web c меткой app со значением web, содержащего один контейнер с названием web.
+Я свой созданный раннее собраный образ отправил на docker hub.
+Для этого были применены команды.
+Тоесть изменил свой образ и запушил.
+ `docker tag app/web:latest zagretdinov/web:latest`
+  `docker push zagretdinov/web:latest`
+
+
+Помещаю манифест web-pod.yaml в директорию kubernetes-intro и отправляю это файл на сервер.
+На самом сервере запускаю.
+
+`kubectl apply -f web-pod.yaml`
+
+Проверяю:
+`kubectl get pods`
+
+`kubectl get pod web -o yaml`
+ 
+ ###kubectl describe
+Проверяю текущее состояние:
+
+`kubectl describe pod web`
+
+__kubectl describe__ - хороший старт для поиска причин проблем с запуском pod.
+
+Теперь указываю в манифесте несуществующий тег и применяю его.
+
+`kubectl apply -f web-pod.yaml`
+
+Наблюдаю изменения статуса.
+
+`kubectl describe pod web`
+
+
+#### Далее я добавляю в манифест web-pod.yaml описание init контейнера,соответствующим требованиям что расписано в инструкции задания.
+
+### Запуск pod
+Удаляю запущенный pod
+`kubectl delete pod web`
+и запускаю с исправленным манифестом.
+
+`kubectl apply -f web-pod.yaml && kubectl get pods -w`
+
+Проверяю работу приложения.
+Да кстати перед запуском приложения необходимо остановить запущенный контейнер который был применен и запущен c Dockerfile либо порт иизменить, так как они будут мешать в работе друг другу.
+
+`kubectl port-forward --address 0.0.0.0 pod/web 8000:8000`
 

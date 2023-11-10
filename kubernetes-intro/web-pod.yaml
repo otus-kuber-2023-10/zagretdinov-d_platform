@@ -10,18 +10,18 @@ spec:
       image: zagretdinov/web:latest
       imagePullPolicy: Always
       volumeMounts:
-        - name: web-volume
+        - name: app
           mountPath: /app
   initContainers:
     - name: init-web
       image: busybox:latest
       command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
       volumeMounts:
-        - name: web-volume
+        - name: app
           mountPath: /app
   restartPolicy: Always
   hostNetwork: true
   dnsPolicy: ClusterFirstWithHostNet
   volumes:
-    - name: web-volume
+    - name: app
       emptyDir: {}
