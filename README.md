@@ -139,6 +139,7 @@ __kubectl describe__ - хороший старт для поиска причи�
 
 `kubectl port-forward --address 0.0.0.0 pod/web 8000:8000`
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/320953bf-9bab-473b-af9c-40b22cf153fb)
+
 В итоге наблюдается вот такая интересная картинка.
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/63f554d5-93b3-4061-a03e-5cbfdf2dc3d9)
 
