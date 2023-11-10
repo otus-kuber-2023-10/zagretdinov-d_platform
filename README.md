@@ -165,3 +165,7 @@ Cоздал образ в папке где лежит Dockerfile и отпра�
 --dry-run=client -o yaml > frontend-pod.yaml`
 
 и сработало вывод информации в файл успешно проведен.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9ed0f69f-53e1-498b-ab8b-a16b364b23fd)
+
+
