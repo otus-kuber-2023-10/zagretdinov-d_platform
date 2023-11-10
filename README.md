@@ -146,3 +146,22 @@ __kubectl describe__ - хороший старт для поиска причи�
 В итоге наблюдается вот такая интересная картинка.
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/63f554d5-93b3-4061-a03e-5cbfdf2dc3d9)
 
+### Знакомство Hipster Shop
+Все команды выполнил на удаленном сервере там где развернут кубер.
+Сконировал образ frontend
+
+`git clone https://github.com/GoogleCloudPlatform/microservices-demo.git`
+
+Cоздал образ в папке где лежит Dockerfile и отправил его в путь в докерхаб.
+`docker build . -t hipster-frontend`
+
+`docker tag hipster-frontend:latest zagretdinov/hipster-frontend:v1`
+`
+`docker push zagretdinov/hipster-frontend:v1`
+
+Запустил pod и выполнил генерацию манифеста, так как он мне выдал --dry-run устарела и выполните по другому в общем изменил как хочет система.
+
+`kubectl run frontend --image avtandilko/hipster-frontend:v0.0.1 --restart=Never
+--dry-run=client -o yaml > frontend-pod.yaml`
+
+и сработало вывод информации в файл успешно проведен.
