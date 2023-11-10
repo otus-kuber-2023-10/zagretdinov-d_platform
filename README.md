@@ -114,6 +114,7 @@ kube-apiserver, etcd, kube-controller-manager, kube-scheduler - запускае
  ###kubectl describe
 Проверяю текущее состояние:
 `kubectl describe pod web`
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cd590aab-cba4-4eac-9a7b-3f48b54c81cf)
 
 __kubectl describe__ - хороший старт для поиска причин проблем с запуском pod.
@@ -122,6 +123,7 @@ __kubectl describe__ - хороший старт для поиска причи�
 `kubectl apply -f web-pod.yaml`
 Наблюдаю изменения статуса.
 `kubectl describe pod web`
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/409d58fc-3b1a-47db-97f1-86302e2c104b)
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b369521d-4478-4732-83f0-7c764b39f66c)
 
@@ -132,6 +134,7 @@ __kubectl describe__ - хороший старт для поиска причи�
 `kubectl delete pod web`
 и запускаю с исправленным манифестом.
 `kubectl apply -f web-pod.yaml && kubectl get pods -w`
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cf700b7f-b066-416b-ad8e-888cdce2774f)
 
 Проверяю работу приложения.
