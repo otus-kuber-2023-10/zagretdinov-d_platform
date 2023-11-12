@@ -3,7 +3,7 @@
 __Подготовка:__
 _Изначально должно быть установленно:_
 
-- Kubelet, Kubectl, docker.
+- Kubelet, Kubectl, docker, containerd.
 
 ```
 sudo mkdir -p /etc/apt/keyrings
@@ -14,15 +14,24 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt-get install -y kubelet kubectl docker-ce docker-ce-cli containerd.io
 ```
-- установим kind
+- устанавливаю kind
 ```
-curl -Lo ./kind "https://kind.sigs.k8s.io/dl/v0.9.0/kind-$(uname)-amd64" 
+curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
 chmod +x ./kind 
 sudo mv ./kind /usr/local/bin/
 ```
-Отправляю файл kind-config.yaml для локального кластера на сервер и запускаю.
+Отправляю созданный файл kind-config.yaml для локального кластера на сервер и запускаю.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/879932f9-7dd1-4c3e-9477-673d0a82a057)
+
+```
+sudo kind create cluster --config kind-config.yaml
+```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/47e3fc92-688f-4628-ad28-7e8cad236036)
 
 В результате:
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/68c91dc5-dafc-4079-9967-6eeb61fb671c)
 
 
 
