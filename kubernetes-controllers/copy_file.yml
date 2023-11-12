@@ -16,4 +16,7 @@
         src: kind-config.yaml
         dest: controllers/kind-config.yaml
    
-   
+    - name: copy2  
+      template:
+        src: frontend-replicaset.yaml
+        dest: controllers/frontend-replicaset.yaml

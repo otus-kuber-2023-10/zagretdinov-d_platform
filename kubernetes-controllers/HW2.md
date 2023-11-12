@@ -34,6 +34,7 @@ sudo kind create cluster --config kind-config.yaml
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/68c91dc5-dafc-4079-9967-6eeb61fb671c)
 
+__ReplicaSet__
 
 
 
