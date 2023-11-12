@@ -31,6 +31,7 @@ sudo kind create cluster --config kind-config.yaml
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/47e3fc92-688f-4628-ad28-7e8cad236036)
 
 В результате:
+
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/68c91dc5-dafc-4079-9967-6eeb61fb671c)
 
 
