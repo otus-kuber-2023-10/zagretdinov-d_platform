@@ -1,0 +1,3 @@
+---
+os_python_packages:
+  - net-tools

@@ -1,0 +1,78 @@
+- name: Start install kubectl
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+  - script: scripts/install_kubectl.sh --some-arguments 1234
+
+- name: Start install minikube
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+  - script: scripts/install_minikube.sh --some-arguments 1234
+
+- name: Start install docker
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:  
+  - name: install dependencies
+    apt:
+      name: "{{item}}"
+      state: present
+      update_cache: yes
+    loop:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
+
+  - name: add GPG key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: add docker repository to apt
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu bionic stable
+      state: present
+
+  - name: install docker
+    apt:
+      name: "{{item}}"
+      state: latest
+      update_cache: yes
+    loop:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+  - name: check docker is active
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Ensure group "docker" exists
+    ansible.builtin.group:
+        name: docker
+        state: present
+
+  - name: adding ubuntu to docker group
+    user:
+      name: ubuntu
+      groups: docker
+      append: yes
+
+

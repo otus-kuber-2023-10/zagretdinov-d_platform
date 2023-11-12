@@ -1,0 +1,9 @@
+- name: Start install kubectl
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+  - script: scripts/docker_bild.sh --some-arguments 1234
