@@ -41,7 +41,7 @@ ___Запуск одной реплики микросервиса frontend:___
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/760599bc-32d0-4f49-999e-0f72a6d4b2e3)
 
-- Определяю, и исправяю ошибку и применяю вновь.
+- Определяю, исправяю ошибку и применяю вновь.
   
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ccf0c8de-c110-4ff5-be6b-cb4c08ac77a9)
 
