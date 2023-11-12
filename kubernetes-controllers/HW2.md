@@ -36,5 +36,18 @@ sudo kind create cluster --config kind-config.yaml
 
 __ReplicaSet__
 
+___Запуск одной реплики микросервиса frontend:___
+- Создаю манифест frontend-replicaset.yaml отправляю его на сервер.
+
+- Выполняю корректировку образа.
+
+- Определяю, и исправяю ошибку и применяю вновь.
+
+В результате:
+```
+kubectl get pods -l app=frontend
+```
+
+
 
 
