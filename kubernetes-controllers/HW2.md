@@ -47,6 +47,8 @@ ___Запуск одной реплики микросервиса frontend:___
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9a6bd0ff-5ada-405f-b081-d17364f56871)
 
+Ошибка в том что не было добавлено необходимое значение.
+
 В результате:
 ```
 kubectl get pods -l app=frontend
@@ -54,8 +56,21 @@ kubectl get pods -l app=frontend
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5810f7c9-5810-4d4a-bf2e-eca0911b4759)
 
+- Повышаю количество метрик
+```
+kubectl scale replicaset frontend --replicas=3
+kubectl get rs frontend
+```
 
+- Проверяю действительно ли восстанавливаются pod.
+```
+kubectl delete pods -l app=frontend | kubectl get pods -l app=frontend -w
+```
 
+- Повторно применяю манифест frontend-replicaset.yaml
 
+- Реплика вновь уменьшилась до одной.
 
+- Для изменения добавляю цифру 3 в строку replicas в манифесте frontend-replicaset.yaml
 
+- Применяю:
