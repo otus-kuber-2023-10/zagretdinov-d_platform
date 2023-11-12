@@ -37,16 +37,24 @@ sudo kind create cluster --config kind-config.yaml
 __ReplicaSet__
 
 ___Запуск одной реплики микросервиса frontend:___
-- Создаю манифест frontend-replicaset.yaml отправляю его на сервер.
+- Создаю манифест frontend-replicaset.yaml изменяю образ и отправляю его на сервер.
 
-- Выполняю корректировку образа.
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/760599bc-32d0-4f49-999e-0f72a6d4b2e3)
 
 - Определяю, и исправяю ошибку и применяю вновь.
+  
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ccf0c8de-c110-4ff5-be6b-cb4c08ac77a9)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9a6bd0ff-5ada-405f-b081-d17364f56871)
 
 В результате:
 ```
 kubectl get pods -l app=frontend
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5810f7c9-5810-4d4a-bf2e-eca0911b4759)
+
+
 
 
 
