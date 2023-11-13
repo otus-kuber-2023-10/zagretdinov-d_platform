@@ -122,6 +122,8 @@ sudo kubectl delete pods -l app=frontend
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cfa81d74-5f05-4604-8e89-59bb87ed4272)
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/886ead22-87df-4b2a-bd96-d1ec0e711a9e)
+
 
 Обновление ReplicaSet не повлекло обновление запущенных pod, так как replicaset не проверяет соответствие запущенных Podов, пока скейл не будет уменьшен до 0.
 
