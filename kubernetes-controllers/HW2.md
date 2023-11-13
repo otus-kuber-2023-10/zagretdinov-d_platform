@@ -164,6 +164,15 @@ __Deployment__
 
 
 ##Deployment | Задание со *
+Для реализации два следующих сценария развертывания использую параметры maxSurge и maxUnavailable.
+
+В результате получаю два манифеста и отправляю их на сервер.
+
+Манифест paymentservice-deployment-bg.yaml:
+
+Манифест paymentservice-deployment-reverse.yaml
+
+
 
 
 
