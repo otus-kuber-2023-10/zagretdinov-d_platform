@@ -83,3 +83,6 @@ kubectl delete pods -l app=frontend | kubectl get pods -l app=frontend -w
 - Применяю:
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7a0310e1-6fac-460c-a95b-aaea1ca216a2)
+
+
+#### Обновление ReplicaSet
