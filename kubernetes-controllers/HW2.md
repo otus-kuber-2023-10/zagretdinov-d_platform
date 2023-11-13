@@ -85,4 +85,37 @@ kubectl delete pods -l app=frontend | kubectl get pods -l app=frontend -w
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7a0310e1-6fac-460c-a95b-aaea1ca216a2)
 
 
-#### Обновление ReplicaSet
+__Обновление ReplicaSet__
+- Добавляю на DockerHub версию образа с новым тегом v2.
+- Выполню перетэгирование с версии 1 на версию 2 и отправляю.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/77acb793-bbb7-4c1d-9598-cd6776853f70)
+
+- Изменяю версию в манивесте и применяю.  
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e003a0e2-86b6-484a-a42b-3ec91ca370b7)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2c4b9ee9-def9-45d5-abba-77fd9cb9cb11)
+
+Ничего не пройзошло.
+
+- Проверяю образ в ReplicaSet:
+```
+kubectl get replicaset frontend -o=jsonpath='{.spec.template.spec.containers[0].image}
+```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0420106c-d14e-481b-abf7-7777dcd52dca)
+
+- Образ на котором запущен Pod.
+```
+kubectl get pods -l app=frontend -o=jsonpath='{.items[0:3].spec.containers[0].image}
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c97a6564-bc59-437e-b65d-96f98b2b89b8)
+  
+
+
+
+
+
+
+
