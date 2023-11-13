@@ -127,7 +127,16 @@ sudo kubectl delete pods -l app=frontend
 
 Обновление ReplicaSet не повлекло обновление запущенных pod, так как replicaset не проверяет соответствие запущенных Podов, пока скейл не будет уменьшен до 0.
 
+__Deployment__
 
+- Собрал и поместил в Docker Hub образ с двумя тегами v0.0.1 и
+v0.0.2;
+
+- Создаю валидный манифест paymentservice-replicaset.yaml с тремя
+репликами, разворачивающими из образа версии v0.0.1.
+
+- Копирую содержимое файла paymentservice-replicaset.yaml в
+файл paymentservice-deployment.yaml изменяю поле kind с ReplicaSet на Deployment.
 
 
 

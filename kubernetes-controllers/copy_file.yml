@@ -20,3 +20,14 @@
       template:
         src: frontend-replicaset.yaml
         dest: controllers/frontend-replicaset.yaml
+
+
+    - name: copy3  
+      template:
+        src: paymentservice-replicaset.yaml
+        dest: controllers/paymentservice-replicaset.yaml
+
+    - name: copy4  
+      template:
+        src: paymentservice-deployment.yaml
+        dest: controllers/paymentservice-deployment.yaml
