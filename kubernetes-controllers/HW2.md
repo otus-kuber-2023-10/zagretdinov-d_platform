@@ -129,15 +129,38 @@ sudo kubectl delete pods -l app=frontend
 
 __Deployment__
 
-- Собрал и поместил в Docker Hub образ с двумя тегами v0.0.1 и
-v0.0.2;
+- Собрал и поместил в Docker Hub образ с двумя тегами v1 и v2;
 
-- Создаю валидный манифест paymentservice-replicaset.yaml с тремя
-репликами, разворачивающими из образа версии v0.0.1.
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/bdb23a57-a2cc-43f6-b5ed-aa3164bc93d0)
 
-- Копирую содержимое файла paymentservice-replicaset.yaml в
-файл paymentservice-deployment.yaml изменяю поле kind с ReplicaSet на Deployment.
+- Создаю валидный манифест paymentservice-replicaset.yaml с тремя репликами, разворачивающими из образа версии v0.0.1.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/67b95483-68e1-48c5-b407-4f480615952a)
+
+- Копирую содержимое файла paymentservice-replicaset.yaml в файл paymentservice-deployment.yaml изменяю поле kind с ReplicaSet на Deployment.
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/362dff76-e03b-4fbd-9f5f-d4d168ac6e0b)
+
+Применяю и проверяю.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0033d698-7c82-4246-a49e-e288e96fa35b)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ae8ff6e7-eb6b-459c-8d0e-7b0801e8dc7c)
+
+- обновляю наш Deployment на версию образа v2
+  ```
+  kubectl apply -f paymentservice-deployment.yaml | kubectl get pods -l app=paymentservice -w
+  ```
+Последовательность обновления pod. По умолчанию применяется стратегия Rolling Update:
+  
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7c3f126a-4018-404a-967b-1d375acb7eeb)
+
+Убеждаюсь что:
+- Все новые pod развернуты из образа v0.0.2;
+- Создано два ReplicaSet:
+- Один (новый) управляет тремя репликами pod с образом v0.0.2;
+- Второй (старый) управляет нулем реплик pod с образом v0.0.1;
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7e3d5ad0-91b5-4523-97d1-ed09bb243f79)
 
 
 
