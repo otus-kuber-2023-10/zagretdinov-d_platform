@@ -105,13 +105,16 @@ __Обновление ReplicaSet__
 kubectl get replicaset frontend -o=jsonpath='{.spec.template.spec.containers[0].image}
 ```
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0420106c-d14e-481b-abf7-7777dcd52dca)
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0db6c9ce-9442-48fb-9784-5909f1a18ec9)
+
 
 - Образ на котором запущен Pod.
 ```
 kubectl get pods -l app=frontend -o=jsonpath='{.items[0:3].spec.containers[0].image}
 ```
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c97a6564-bc59-437e-b65d-96f98b2b89b8)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/11f8e929-742b-4055-82e2-f6c06f5e31fd)
+
   
 
 
