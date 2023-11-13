@@ -93,7 +93,8 @@ __Обновление ReplicaSet__
 
 - Изменяю версию в манивесте и применяю.  
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e003a0e2-86b6-484a-a42b-3ec91ca370b7)
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0a227749-45a9-4635-b28e-0969378182d6)
+
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2c4b9ee9-def9-45d5-abba-77fd9cb9cb11)
 
