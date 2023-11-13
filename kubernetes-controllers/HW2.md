@@ -56,21 +56,30 @@ kubectl get pods -l app=frontend
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5810f7c9-5810-4d4a-bf2e-eca0911b4759)
 
-- Повышаю количество метрик
+- Повышаю количество реплик
 ```
 kubectl scale replicaset frontend --replicas=3
 kubectl get rs frontend
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/331f8920-2358-412d-9199-e745e0f82acd)
 
 - Проверяю действительно ли восстанавливаются pod.
 ```
 kubectl delete pods -l app=frontend | kubectl get pods -l app=frontend -w
 ```
 
-- Повторно применяю манифест frontend-replicaset.yaml
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/54de40e4-6380-4e89-aa13-a698b8a4a3e9)
 
+- Повторно применяю манифест frontend-replicaset.yaml
 - Реплика вновь уменьшилась до одной.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0bdbd2d9-23d6-4f6d-9953-56876f672b31)
 
 - Для изменения добавляю цифру 3 в строку replicas в манифесте frontend-replicaset.yaml
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4f35bd1e-f69d-43a4-aad8-7385ce364971)
+
 - Применяю:
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7a0310e1-6fac-460c-a95b-aaea1ca216a2)
