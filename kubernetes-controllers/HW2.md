@@ -105,8 +105,7 @@ __Обновление ReplicaSet__
 kubectl get replicaset frontend -o=jsonpath='{.spec.template.spec.containers[0].image}
 ```
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0db6c9ce-9442-48fb-9784-5909f1a18ec9)
-
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/41194a31-6b4c-49be-97a9-c76771669402)
 
 - Образ на котором запущен Pod.
 ```
