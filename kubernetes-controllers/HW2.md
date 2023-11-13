@@ -163,7 +163,7 @@ __Deployment__
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7e3d5ad0-91b5-4523-97d1-ed09bb243f79)
 
 
-
+##Deployment | Задание со *
 
 
 

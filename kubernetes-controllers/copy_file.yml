@@ -31,3 +31,14 @@
       template:
         src: paymentservice-deployment.yaml
         dest: controllers/paymentservice-deployment.yaml
+
+    - name: copy5  
+      template:
+        src: paymentservice-deployment-bg.yaml
+        dest: controllers/paymentservice-deployment-bg.yaml
+
+    - name: copy6  
+      template:
+        src: paymentservice-deployment-reverse.yaml
+        dest: controllers/paymentservice-deployment-reverse.yaml
+
