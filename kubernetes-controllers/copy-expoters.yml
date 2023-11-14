@@ -17,8 +17,22 @@
         dest: node-exporter/exporter-Role.yaml
        
     
-    - name: copy1  
+    - name: copy2
       template:
-        src: exporters/exporter-Role.yaml
-        dest: node-exporter/exporter-Role.yaml
+        src: exporters/exporter-RoleBinding.yaml
+        dest: node-exporter/exporter-RoleBinding.yaml
  
+    - name: copy3  
+      template:
+        src: exporters/exporter-service.yaml
+        dest: node-exporter/exporter-service.yaml
+
+    - name: copy4 
+      template:
+        src: exporters/node-exporter-serviceAccount.yaml
+        dest: node-exporter/node-exporter-serviceAccount.yaml
+
+    - name: copy4 
+      template:
+        src: node-exporter-daemonset.yaml
+        dest: node-exporter/node-exporter-daemonset.yaml
