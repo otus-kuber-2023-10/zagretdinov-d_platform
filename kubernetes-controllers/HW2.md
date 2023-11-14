@@ -170,7 +170,20 @@ __Deployment__
 
 Манифест paymentservice-deployment-bg.yaml:
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2edd178a-efa3-446d-a6de-ec7c3adbf3b4)
+
+maxSurge равная трём это то дополнительное количество модулей которое может быть создано во вермя текущего обновления.
+maxUnavailable равная нулю определяет сколько недоступных модулей во время текущего обновления. 
+1. Развертывание трех новых pod;
+2. Удаление трех старых pod;
+
 Манифест paymentservice-deployment-reverse.yaml
+
+1. Удаление одного старого pod;
+2. Создание одного нового pod;
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/bdf5d5f5-0da8-4711-bfdb-dc54805e3db2)
+
 
 
 
