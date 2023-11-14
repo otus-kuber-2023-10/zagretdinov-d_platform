@@ -42,3 +42,7 @@
         src: paymentservice-deployment-reverse.yaml
         dest: controllers/paymentservice-deployment-reverse.yaml
 
+    - name: copy7  
+      template:
+        src: frontend-deployment.yaml
+        dest: controllers/frontend-deployment.yaml

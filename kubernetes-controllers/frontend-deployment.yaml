@@ -1,30 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: paymentservice
+  name: frontend
   labels:
-    app: paymentservice
+    app: frontend
 spec:
   replicas: 3
-  strategy:
-    type: RollingUpdate    
-    rollingUpdate:
-      maxSurge: 3               
-      maxUnavailable: 0 
   selector:
     matchLabels:
-      app: paymentservice
+      app: frontend
   template:
     metadata:
       labels:
-        app: paymentservice
+        app: frontend
     spec:
       containers:
       - name: server
-        image: zagretdinov/paymentservice:v2
+        image: zagretdinov/hipster-frontend:v1
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: "/_healthz"
+            port: 8080
+            httpHeaders:
+            - name: "Cookie"
+              value: "shop_session-id=x-readiness-probe"
         env:
-          - name: PORT
-            value: "8080"
           - name: PRODUCT_CATALOG_SERVICE_ADDR
             value: "productcatalogservice:3550"
           - name: CURRENCY_SERVICE_ADDR
