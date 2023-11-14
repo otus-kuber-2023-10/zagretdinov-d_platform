@@ -13,26 +13,28 @@
     
     - name: copy1  
       template:
-        src: exporters/exporter-Role.yaml
-        dest: node-exporter/exporter-Role.yaml
+        src: manifests/node-exporter-clusterRole.yaml
+        dest: node-exporter/node-exporter-clusterRole.yaml
        
     
     - name: copy2
       template:
-        src: exporters/exporter-RoleBinding.yaml
-        dest: node-exporter/exporter-RoleBinding.yaml
+        src: manifests/node-exporter-clusterRoleBinding.yaml
+        dest: node-exporter/node-exporter-clusterRoleBinding.yaml
+
  
     - name: copy3  
       template:
-        src: exporters/exporter-service.yaml
-        dest: node-exporter/exporter-service.yaml
+        src: manifests/node-exporter-service.yaml
+        dest: node-exporter/node-exporter-service.yaml
+
 
     - name: copy4 
       template:
-        src: exporters/node-exporter-serviceAccount.yaml
+        src: manifests/node-exporter-serviceAccount.yaml
         dest: node-exporter/node-exporter-serviceAccount.yaml
 
-    - name: copy4 
+    - name: copy 
       template:
         src: node-exporter-daemonset.yaml
         dest: node-exporter/node-exporter-daemonset.yaml

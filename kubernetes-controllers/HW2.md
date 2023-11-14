@@ -235,9 +235,25 @@ sudo kubectl port-forward node-exporter-5t5jh 9100:9100
 
 DaemonSet | Задание с ⭐️⭐️
 
+Чтоб развернуть Node Exporter как на master, так и на worker нодах я использовал уже готовые манифесты которые подготовил в папке manifests. Далее доставил на сервер и запустил в следующем порядке.
 
+```
+sudo kubectl create ns monitoring
+sudo kubectl apply -f node-exporter-serviceAccount.yaml
+sudo kubectl apply -f node-exporter-clusterRole.yaml
+sudo kubectl apply -f node-exporter-clusterRoleBinding.yaml
+sudo kubectl apply -f node-exporter-daemonset.yaml
+sudo kubectl apply -f node-exporter-service.yaml
+```
+В результате с помощью команд:
 
+```
+sudo kubectl get ns
+sudo kubectl get daemonset -n monitoring
+sudo kubectl get endpoints -n monitoring
+```
 
+И демонстрирую вывод:
 
 
 
