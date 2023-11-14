@@ -233,7 +233,8 @@ sudo kubectl port-forward node-exporter-5t5jh 9100:9100
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c55a59bf-ee56-45ca-be4d-eef4ed5304b1)
 
-DaemonSet | Задание с ⭐️⭐️
+### DaemonSet | Задание с ⭐️⭐️
+
 Чтоб развернуть Node Exporter как на master, так и на worker нодах я использовал уже готовые манифесты которые подготовил в папке manifests. Далее доставил на сервер и запустил в следующем порядке.
 
 ```
