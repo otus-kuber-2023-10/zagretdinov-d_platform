@@ -1,0 +1,24 @@
+- name: Start copy exporter-nodes
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: node-exporter
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: exporters/exporter-Role.yaml
+        dest: node-exporter/exporter-Role.yaml
+       
+    
+    - name: copy1  
+      template:
+        src: exporters/exporter-Role.yaml
+        dest: node-exporter/exporter-Role.yaml
+ 
