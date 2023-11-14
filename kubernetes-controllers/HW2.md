@@ -214,9 +214,11 @@ sudo kubectl describe pod frontend
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b5ba0a2e-9ab8-4227-b8db-d0766215f708)
 
-Как показывае вывод результат не удачен.
+Как показывае вывод результат неудачен и в чем причина.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a13a0cc6-11ab-45fb-83af-15b5d4e0d15c)
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/86641833-8c5b-4e10-abcc-5b4da8ee1366)
 
 
 
