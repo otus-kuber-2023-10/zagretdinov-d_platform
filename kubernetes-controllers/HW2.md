@@ -254,11 +254,15 @@ sudo kubectl get endpoints -n monitoring
 
 И демонстрирую вывод:
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/441b47a2-b24a-4aa7-aec0-e04391db2919)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/78ef99c3-80a7-4c88-b341-e19741ae1a32)
+
+Согласно теории DaemonSet гарантирует что копия пода всегда будет доступна на каждом рабочем узле в кластере, то есть на скриншоте видно что node-exporter развернут как и мастер так и на трех воркерах. 
 
 
 
 
 
 
-
-
+ 
