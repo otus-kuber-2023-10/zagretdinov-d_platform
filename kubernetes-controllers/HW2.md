@@ -218,6 +218,14 @@ sudo kubectl describe pod frontend
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a13a0cc6-11ab-45fb-83af-15b5d4e0d15c)
 
+### DaemonSet | Задание со ⭐️
+
+- Создаю манифест node-exporter-daemonset.yaml
+
+Применяю данный DaemonSet и проверяю: 
+```
+sudo kubectl port-forward node-exporter-5t5jh 9100:9100
+```
 
 
 

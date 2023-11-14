@@ -46,3 +46,8 @@
       template:
         src: frontend-deployment.yaml
         dest: controllers/frontend-deployment.yaml
+
+    - name: copy8  
+      template:
+        src: node-exporter-daemonset.yaml
+        dest: controllers/node-exporter-daemonset.yaml
