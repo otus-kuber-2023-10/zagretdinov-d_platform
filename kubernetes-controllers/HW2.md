@@ -235,8 +235,10 @@ sudo kubectl port-forward node-exporter-5t5jh 9100:9100
 
 DaemonSet | Задание с ⭐️⭐️
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/415d92dd-758e-411b-82fc-a2d4132ed678)
 
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3ffa6978-fab5-4395-af0b-abfec3592948)
 
 
 
