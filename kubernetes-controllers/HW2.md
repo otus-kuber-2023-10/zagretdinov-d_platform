@@ -229,7 +229,7 @@ sudo kubectl port-forward node-exporter-5t5jh 9100:9100
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3268c5d1-2e36-4678-8082-25be7d6955b0)
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3d2092ed-a5b8-40ff-b439-277cef4c90fe)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/30a10072-aa9e-44d8-a9db-858bd2741b47)
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c55a59bf-ee56-45ca-be4d-eef4ed5304b1)
 
