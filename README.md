@@ -3,4 +3,6 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 ---
 ### [1. Тема: Настройка локального окружения. Запуск окружения. Запуск первого контейнера. Работа с kubectl.](kubernetes-intro/HW1.md)
+
+### [2. Тема: Kubernetes controllers. ReplicaSet, Deployment, DaemonSet](kubernetes-controllers/HW2.md)
 ---

@@ -1,0 +1,53 @@
+- name: Start copy docker
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: controllers
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: kind-config.yaml
+        dest: controllers/kind-config.yaml
+   
+    - name: copy2  
+      template:
+        src: frontend-replicaset.yaml
+        dest: controllers/frontend-replicaset.yaml
+
+
+    - name: copy3  
+      template:
+        src: paymentservice-replicaset.yaml
+        dest: controllers/paymentservice-replicaset.yaml
+
+    - name: copy4  
+      template:
+        src: paymentservice-deployment.yaml
+        dest: controllers/paymentservice-deployment.yaml
+
+    - name: copy5  
+      template:
+        src: paymentservice-deployment-bg.yaml
+        dest: controllers/paymentservice-deployment-bg.yaml
+
+    - name: copy6  
+      template:
+        src: paymentservice-deployment-reverse.yaml
+        dest: controllers/paymentservice-deployment-reverse.yaml
+
+    - name: copy7  
+      template:
+        src: frontend-deployment.yaml
+        dest: controllers/frontend-deployment.yaml
+
+    - name: copy8  
+      template:
+        src: node-exporter-daemonset.yaml
+        dest: controllers/node-exporter-daemonset.yaml

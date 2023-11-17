@@ -1,0 +1,40 @@
+- name: Start copy exporter-nodes
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: node-exporter
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: manifests/node-exporter-clusterRole.yaml
+        dest: node-exporter/node-exporter-clusterRole.yaml
+       
+    
+    - name: copy2
+      template:
+        src: manifests/node-exporter-clusterRoleBinding.yaml
+        dest: node-exporter/node-exporter-clusterRoleBinding.yaml
+
+ 
+    - name: copy3  
+      template:
+        src: manifests/node-exporter-service.yaml
+        dest: node-exporter/node-exporter-service.yaml
+
+
+    - name: copy4 
+      template:
+        src: manifests/node-exporter-serviceAccount.yaml
+        dest: node-exporter/node-exporter-serviceAccount.yaml
+
+    - name: copy 
+      template:
+        src: node-exporter-daemonset.yaml
+        dest: node-exporter/node-exporter-daemonset.yaml
