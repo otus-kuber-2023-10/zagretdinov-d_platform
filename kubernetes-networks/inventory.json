@@ -2,7 +2,7 @@
     "node1": {
       "hosts": {
         "test-kub": {
-          "ansible_host": "51.250.84.247",
+          "ansible_host": "51.250.65.100",
           }
       }
     }
