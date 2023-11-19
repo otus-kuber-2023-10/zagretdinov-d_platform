@@ -141,4 +141,7 @@ sudo -i
 curl http://10.108.146.102/index.html
 iptables --list -nv -t nat | grep 10.108.146.102
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9b55637f-2c88-4c7b-839a-5ea1815d652c)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e792a711-dab2-4888-a593-6888f6f3644d)
 
