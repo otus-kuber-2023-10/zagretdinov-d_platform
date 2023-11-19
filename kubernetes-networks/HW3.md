@@ -96,6 +96,9 @@ kubectl delete pod/web --grace-period=0 --force
 kubectl apply -f web-deploy.yaml
 kubectl describe deployment web
 ```
+В результате:
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e78798bd-dddc-497b-aba4-4e45a9f4bb71)
 
 
 
