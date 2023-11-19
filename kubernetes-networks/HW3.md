@@ -55,18 +55,47 @@ _По условиям предыдущего ДЗ вебсервер слуша
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1cda4289-1ae3-4378-a8ff-6d63331ee429)
 
-Вопрос для самопроверки:
+__Вопрос для самопроверки:__
+
+1. Почему следующая конфигурация валидна, но не имеет смысла?
+из самого нахождения самого grep всегда возвращается 0.
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3e97b5a4-c02f-49a6-95f0-54bbff28e84e)
 
+Проваливаюсь в миникуб и выполняю команды.
+```
+minikube ssh
+ps aux | grep my_web_server_process
+echo $?
+```
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/61340743-624e-42a5-b949-bdf1d2f58360)
 
+2. Бывают ли ситуации, когда она все-таки имеет смысл?
+Имеет смысл, проводится простая проверка - запущен ли процесс или нет
+```
+ps aux | grep my_web_server_process | grep -v grep
+```
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f6f88773-54a8-4f7a-ba53-0b9544509d97)
 
+информацией ознакомился тут.
+
+ https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
 
 
+#### Создание Deployment
 
+_Скорее всего, в процессе изменения конфигурации Pod, вы столкнулись с  неудобством  обновления  конфигурации  пода  через kubectl  (и  уже нашли ключик --force). В  любом  случае,  для  управления  несколькими  однотипными  подамитакой способ не очень подходит. Создадим Deployment, который упростит обновление конфигурации пода и управление группами подов._
+
+Создаю файл web-deploy.yaml в папке kubernetes-networks с содержимым и отправляю на сервер. 
+
+удаляю старый под и деплою новый проверяю что получилось
+```
+kubectl delete pod/web --grace-period=0 --force
+kubectl apply -f web-deploy.yaml
+kubectl describe deployment web
+```
 
 
 

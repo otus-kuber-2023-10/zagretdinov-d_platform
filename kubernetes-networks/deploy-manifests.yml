@@ -16,5 +16,8 @@
         src: web-pod.yaml
         dest: kubernetes-networks/web-pod.yaml
        
-    
+    - name: copy2
+      template:
+        src: web-deploy.yaml
+        dest: kubernetes-networks/web-deploy.yaml
     
