@@ -21,3 +21,7 @@
         src: web-deploy.yaml
         dest: kubernetes-networks/web-deploy.yaml
     
+    - name: copy3
+      template:
+        src: web-svc-cip.yaml
+        dest: kubernetes-networks/web-svc-cip.yaml

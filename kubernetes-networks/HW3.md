@@ -130,3 +130,15 @@ kubectl describe deployment web
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5fd8b74b-084e-447f-97a9-a2b62bfc32c9)
 
 
+#### Создание Service | ClusterIP
+Cоздаю манифест для нашего сервиса в папке kubernetes-networks . Файл web-svc-cip.yaml и отправляю на сервер.
+Подключаюсь к ВМ и проверяю.  
+
+```
+kubectl get services
+minikube ssh
+sudo -i
+curl http://10.108.146.102/index.html
+iptables --list -nv -t nat | grep 10.108.146.102
+```
+
