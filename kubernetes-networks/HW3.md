@@ -111,18 +111,22 @@ kubectl describe deployment web
 
 Проверяю состояние
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5e0d69dc-4534-4318-988a-29d713f19bc1)
+
 Добавляю в манифест (web-deploy.yaml) блок strategy
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8c4a14d9-8cd8-4436-a58f-e6f72b119add)
 
 Попробуем разные варианты деплоя с крайними значениями maxSurge и maxUnavailable (оба 0, оба 100%, 0 и 100%)
 
-оба 0
+- оба 0
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1d9f41cc-7022-4bad-908b-ea7367bacef9)
 
-оба 100%
+- оба 100%
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/92506645-9480-437d-bf21-4bc62529b407)
 
 
-maxUnavailable: 0 maxSurge: 100%
+- maxUnavailable: 0 maxSurge: 100%
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5fd8b74b-084e-447f-97a9-a2b62bfc32c9)
 
 
