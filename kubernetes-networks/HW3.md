@@ -55,3 +55,18 @@ _По условиям предыдущего ДЗ вебсервер слуша
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1cda4289-1ae3-4378-a8ff-6d63331ee429)
 
+Вопрос для самопроверки:
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3e97b5a4-c02f-49a6-95f0-54bbff28e84e)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/61340743-624e-42a5-b949-bdf1d2f58360)
+
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f6f88773-54a8-4f7a-ba53-0b9544509d97)
+
+
+
+
+
+
+
