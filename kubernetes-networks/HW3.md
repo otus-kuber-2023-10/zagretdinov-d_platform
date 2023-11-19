@@ -100,5 +100,26 @@ kubectl describe deployment web
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e78798bd-dddc-497b-aba4-4e45a9f4bb71)
 
+Согласно исправлению ReadinessProbe на
+- Увеличение число реплик до 3 (replicas: 3)
+- Исправления порта в readinessProbe на порт 8000
+
+применяю манифест:
+
+
+#### Deployment | Самостоятельная работа
+
+Проверяю состояние
+
+Добавляю в манифест (web-deploy.yaml) блок strategy
+
+Попробуем разные варианты деплоя с крайними значениями maxSurge и maxUnavailable (оба 0, оба 100%, 0 и 100%)
+
+оба 0
+
+оба 100%
+
+
+maxUnavailable: 0 maxSurge: 100%
 
 
