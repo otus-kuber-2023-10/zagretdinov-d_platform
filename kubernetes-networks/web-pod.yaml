@@ -8,9 +8,15 @@ spec:
   containers:
     - name: web-nginx
       image: zagretdinov/web:latest
+      #livenessProbe:
+      #  tcpSocket:  
+      #    port: 8000 
       livenessProbe:
-        tcpSocket:  
-          port: 8000 
+        exec:
+          command:
+            - 'sh'
+            - '-c'
+            - 'ps aux | grep my_web_server_process'
       readinessProbe:
         httpGet:
           path: /index.html
