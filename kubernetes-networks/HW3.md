@@ -148,3 +148,13 @@ ip addr show
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e792a711-dab2-4888-a593-6888f6f3644d)
 
 ![Alt text](image-1.png)
+
+https://msazure.club/kubernetes-services-and-iptables/
+
+#### Включение IPVS
+
+Включаю IPVS 
+
+При запуске нового инстанса Minikube лучше использовать ключ --extra-config и сразу указать, что мы хотим IPVS
+
+http://51.250.65.100:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/deployment?namespace=default
