@@ -216,8 +216,18 @@ iptables --list -nv -t nat
 
 ### Работа с LoadBalancer и IngressIngress
 
+#### Установка MetalLB
+
+MetalLB  позволяет  запустить  внутри  кластера  L4-балансировщик,который  будет  принимать  извне  запросы  к  сервисам  и  раскидывать  ихмежду подами.
+НЕТ все как показал результат все не так просто.
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a9cb7367-8c10-4d83-b6f8-8d8d85ebd5cf)
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c063b230-a56c-4b0d-b047-af814d6b7674)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cdf892d8-8bac-4f36-9dde-0ea20655a0b0)
+
+Что то не так.
+
+
+
 
 
