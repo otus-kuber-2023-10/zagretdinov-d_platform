@@ -184,6 +184,8 @@ kubectl edit configmap -n kube-system kube-proxy
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ae884bed-f95e-4c21-9368-8c290ec066fe)
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/75092eff-f861-4e5a-8316-c1ab1f29618b)
+
 Теперь удалим Pod с kube-proxy , чтобы применить новую конфигурацию (он входит в DaemonSet и будет запущен автоматически)
 
 ```
