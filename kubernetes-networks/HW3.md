@@ -170,6 +170,32 @@ http://51.250.65.100:8001/api/v1/namespaces/kubernetes-dashboard/services/http:k
 
 и соответственно попадаю на сам дашборт.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/57cb6386-9d8e-41f7-9ea6-a93163ac43eb)
+
+выбираю namespace kube-system , Configs and Storage/Config Maps и добавляю параметры
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a82f9534-33e2-4fa8-9041-49ec3a0f56fe)
+
+Теперь удалим Pod с kube-proxy , чтобы применить новую конфигурацию (он входит в DaemonSet и будет запущен автоматически)
+
+kubectl --namespace kube-system delete pod --selector='k8s-app=kube-proxy'
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8df713a5-a5e5-4764-a227-1307dbb77d56)
+
+Что-то поменялось, но старые цепочки на месте (хотя у них теперь 0 references) 😕 kube-proxy настроил все по-новому, но не удалил мусор Запуск kube-proxy --cleanup в нужном поде - тоже не помогает
+
+kubectl --namespace kube-system exec kube-proxy-<POD> kube-proxy --cleanup
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4e03281b-e3cb-4aee-bdb0-77f37a3778ca)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b26ebdc5-68d8-47d4-9761-6710bbc391fd)
+
+Теперь надо подождать (примерно 30 секунд), пока kube-proxy восстановит правила для сервисов
+
+iptables --list -nv -t nat
+
+
+
 
 
 
