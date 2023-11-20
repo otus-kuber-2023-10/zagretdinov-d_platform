@@ -40,3 +40,8 @@
       template:
         src: metallb-config.yaml
         dest: kubernetes-networks/metallb-config.yaml
+
+    - name: copy7
+      template:
+        src: coredns/dns-service.yaml
+        dest: kubernetes-networks/dns-service.yaml

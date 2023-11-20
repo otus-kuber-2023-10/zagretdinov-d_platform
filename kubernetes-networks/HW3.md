@@ -226,7 +226,7 @@ MetalLB  позволяет  запустить  внутри  кластера 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cdf892d8-8bac-4f36-9dde-0ea20655a0b0)
 
 Что то не так.
-Был применен другой манифест так настройка согласно мануала ДЗ очень сильно устарела в связи с эти я буду руководствоваться официальном сайтом https://metallb.universe.tf/configuration/
+Был применен другой манифест так как настройка согласно мануала ДЗ очень сильно устарела в связи с эти я буду руководствоваться официальном сайтом https://metallb.universe.tf/configuration/
 ```
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml
 ```
@@ -239,18 +239,20 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/conf
 
 В конфигурации мы настраиваем:
 
-    Режим L2 (анонс адресов балансировщиков с помощью ARP)
-    Создаем пул адресов 172.17.255.1 - 172.17.255.255 - они будут назначаться сервисам с типом LoadBalancer
-
+Режим L2 (анонс адресов балансировщиков с помощью ARP)
+- Создаю пул адресов 172.17.255.1 - 172.17.255.255  
+- они - будут назначаться сервисам с типом LoadBalancer
+```
 kubectl apply -f metallb-config.yaml
-
-Сделаем копию файла web-svc-cip.yaml в web-svc-lb.yaml и изменим имя сервиса и его тип на LoadBalancer
-
+```
+Делаю копию файла web-svc-cip.yaml в web-svc-lb.yaml и изменяю имя сервиса и его тип на LoadBalancer
+```
 kubectl apply -f web-svc-lb.yaml
+```
 
-в результате демонстрирую результаты.
-
+в итоге демонстрирую результаты.
 команды:
+
 ```
 kubectl get pods -n metallb-system
 kubectl get svc -A
@@ -275,5 +277,16 @@ curl http://172.17.255.1
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f7cb27df-189e-4c64-a188-a3151331526d)
 
 
+### Задание со ⭐ | DNS через MetalLB
 
+Получаю манифест по ссылке https://metallb.universe.tf/usage/
+создаю файл dns-service.yaml ложу в подкаталог ./coredns.
+Поскольку DNS работает по TCP и UDP протоколам - учтываю это в
+конфигурации. Оба протокола работают по одному и тому же IP-
+адресу балансировщика 172.17.255.10 .
+В результате:
+
+```
+kubectl apply -f dns-service.yaml
+```
 
