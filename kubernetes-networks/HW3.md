@@ -182,6 +182,8 @@ kubectl --namespace kube-system delete pod --selector='k8s-app=kube-proxy'
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8df713a5-a5e5-4764-a227-1307dbb77d56)
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e9ad7d70-b94a-4b43-b758-eb3991e45d69)
+
 Что-то поменялось, но старые цепочки на месте (хотя у них теперь 0 references) 😕 kube-proxy настроил все по-новому, но не удалил мусор Запуск kube-proxy --cleanup в нужном поде - тоже не помогает
 
 kubectl --namespace kube-system exec kube-proxy-<POD> kube-proxy --cleanup
