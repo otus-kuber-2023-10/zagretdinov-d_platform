@@ -237,8 +237,30 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/conf
 
 Теперь настраиваю балансировщик IPAddressPool
 
+В конфигурации мы настраиваем:
 
+    Режим L2 (анонс адресов балансировщиков с помощью ARP)
+    Создаем пул адресов 172.17.255.1 - 172.17.255.255 - они будут назначаться сервисам с типом LoadBalancer
 
+kubectl apply -f metallb-config.yaml
+
+Сделаем копию файла web-svc-cip.yaml в web-svc-lb.yaml и изменим имя сервиса и его тип на LoadBalancer
+
+kubectl apply -f web-svc-lb.yaml
+
+в результате демонстрирую результаты.
+
+команды:
+```
+kubectl get pods -n metallb-system
+kubectl get svc -A
+kubectl --namespace metallb-system logs controller-786f9df989-f9k9n
+kubectl describe svc web-svc-lb
+minikube ssh
+ip addr show eth0
+sudo ip route add 172.17.255.0/24 via 192.168.49.2
+curl http://172.17.255.1
+```
 
 
 

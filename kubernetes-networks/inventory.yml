@@ -1,4 +1,4 @@
 node1:
   hosts:
     test-kub:
-      ansible_host: 51.250.68.219
+      ansible_host: 62.84.124.47
