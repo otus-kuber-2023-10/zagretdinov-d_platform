@@ -25,3 +25,18 @@
       template:
         src: web-svc-cip.yaml
         dest: kubernetes-networks/web-svc-cip.yaml
+
+    - name: copy4
+      template:
+        src: metallb-config.yaml
+        dest: kubernetes-networks/metallb-config.yaml
+
+    - name: copy5
+      template:
+        src: web-svc-lb.yaml
+        dest: kubernetes-networks/web-svc-lb.yaml
+
+    - name: copy6
+      template:
+        src: metallb-config.yaml
+        dest: kubernetes-networks/metallb-config.yaml
