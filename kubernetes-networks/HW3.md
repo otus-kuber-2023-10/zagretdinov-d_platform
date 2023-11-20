@@ -176,6 +176,14 @@ http://51.250.65.100:8001/api/v1/namespaces/kubernetes-dashboard/services/http:k
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a82f9534-33e2-4fa8-9041-49ec3a0f56fe)
 
+Ну и другой способ выполняю команду.
+
+```
+kubectl edit configmap -n kube-system kube-proxy
+```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ae884bed-f95e-4c21-9368-8c290ec066fe)
+
 Теперь удалим Pod с kube-proxy , чтобы применить новую конфигурацию (он входит в DaemonSet и будет запущен автоматически)
 
 ```
