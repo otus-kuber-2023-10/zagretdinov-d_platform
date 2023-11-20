@@ -226,6 +226,12 @@ MetalLB  позволяет  запустить  внутри  кластера 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cdf892d8-8bac-4f36-9dde-0ea20655a0b0)
 
 Что то не так.
+Был применен другой манифест
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml
+```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e4101bca-6201-4019-b376-4f573c883ddf)
 
 
 
