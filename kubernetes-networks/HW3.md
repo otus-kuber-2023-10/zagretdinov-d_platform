@@ -169,3 +169,8 @@ http://51.250.65.100:8001/api/v1/namespaces/kubernetes-dashboard/services/http:k
 
 
 и соответственно попадаю на сам дашборт.
+
+
+
+
+
