@@ -261,6 +261,18 @@ ip addr show eth0
 sudo ip route add 172.17.255.0/24 via 192.168.49.2
 curl http://172.17.255.1
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cf987c4e-295b-439e-a9b0-9bdf254a8370)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d0b86d00-d4c8-4135-a4a6-26752cdf293a)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ba7e1a9c-009e-44cb-9c9a-27e07b993ab1)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2ea24ff7-31ca-42a2-a3c9-d9552de18b00)
+
+Так как я развернул машину в облаке проверку я буду выполнять утилитой curl.
+перед этим нужно добавить маршрут.
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f7cb27df-189e-4c64-a188-a3151331526d)
 
 
 
