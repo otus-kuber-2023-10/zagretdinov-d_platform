@@ -131,7 +131,7 @@ kubectl describe deployment web
 
 
 #### Создание Service | ClusterIP
-Cоздаю манифест для нашего сервиса в папке kubernetes-networks . Файл web-svc-cip.yaml и отправляю на сервер.
+Cоздаю манифест для сервиса в папке kubernetes-networks файл web-svc-cip.yaml с содержимым отправляю на сервер и применяю.
 Подключаюсь к ВМ и проверяю.  
 
 ```
