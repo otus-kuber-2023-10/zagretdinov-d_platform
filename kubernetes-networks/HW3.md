@@ -196,7 +196,7 @@ kubectl --namespace kube-system exec kube-proxy-<POD> kube-proxy --cleanup
 
 iptables --list -nv -t nat
 
-
+gg
 
 
 
