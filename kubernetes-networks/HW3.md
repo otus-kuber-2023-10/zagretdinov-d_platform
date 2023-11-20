@@ -190,10 +190,10 @@ kubectl --namespace kube-system delete pod --selector='k8s-app=kube-proxy'
 ```
 kubectl --namespace kube-system exec kube-proxy-<POD> kube-proxy --cleanup
 ```
+Полностью очищаю все правила iptables.
+Создадаю в ВМ с Minikube файл /tmp/iptables.cleanup
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4e03281b-e3cb-4aee-bdb0-77f37a3778ca)
-
-
 
 Теперь жду (примерно 30 секунд), пока kube-proxy восстановит правила для сервисов
 
