@@ -216,6 +216,9 @@ iptables --list -nv -t nat
 
 ### Работа с LoadBalancer и IngressIngress
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a9cb7367-8c10-4d83-b6f8-8d8d85ebd5cf)
+
+
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7f9cc18b-c59a-4297-9c50-26a99d070117)
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c063b230-a56c-4b0d-b047-af814d6b7674)
