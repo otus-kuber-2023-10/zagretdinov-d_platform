@@ -157,4 +157,15 @@ https://msazure.club/kubernetes-services-and-iptables/
 
 При запуске нового инстанса Minikube лучше использовать ключ --extra-config и сразу указать, что мы хотим IPVS
 
+В моём случае так как я исспользую облако где развернул инфаструктуру я буду использовать следующий вид команды.
+
+```
+kubectl proxy --address='0.0.0.0' --disable-filter=true
+```
+теперь перехожу по ссылке.
+
+
 http://51.250.65.100:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/deployment?namespace=default
+
+
+и соответственно попадаю на сам дашборт.
