@@ -60,3 +60,8 @@
       template:
         src:  web-ingress.yaml
         dest: kubernetes-networks/web-ingress.yaml
+
+    - name: copy11
+      template:
+        src:  dashboard/dashboard-ingress.yaml
+        dest: kubernetes-networks/dashboard-ingress.yaml

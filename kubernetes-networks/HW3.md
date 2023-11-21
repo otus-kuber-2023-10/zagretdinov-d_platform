@@ -288,6 +288,58 @@ kubectl apply -f dns-service.yaml
 ```
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/3732b0a0-00c8-4222-9450-69b6a131b01c)
 
+### Создание Ingress
 
+Установка начинается с основного манифеста:
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/baremetal/deploy.yaml
+```
 
+Создадим файл nginx-lb.yaml c конфигурацией LoadBalancer - сервиса
+```
+kubectl get services -A
+curl http://172.17.255.2
+```
+### Подключение приложение Web к Ingress
 
+Наш Ingress-контроллер не требует ClusterIP для балансировки трафика Список узлов для балансировки заполняется из ресурса Endpoints нужного сервиса (это нужно для "интеллектуальной" балансировки, привязки сессий и т.п.) Поэтому мы можем использовать headless-сервис для нашего вебприложения. Скопируем web-svc-cip.yaml в web-svc-headless.yaml изменим имя сервиса на web-svc, добавим параметр clusterIP: None
+
+Применим полученный манифест и проверим, что ClusterIP для сервиса web-svc действительно не назначен
+
+```
+kubectl apply -f web-svc-headless.yaml
+kubectl get services -A | grep web-svc
+```
+### Создание правил Ingress
+
+Теперь настроим наш ingress-прокси, создав манифест с ресурсом Ingress (файл web-ingress.yaml ): Применим манифест и проверим, что корректно заполнены Address и Backends
+
+```
+kubectl apply -f web-ingress.yaml
+ingress.networking.k8s.io/web created
+
+kubectl describe ingress/web
+Labels:           <none>
+Namespace:        default
+Address:          172.168.17.2
+Ingress Class:    nginx
+Default backend:  <default>
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  *
+              /web   web-svc:8000 (172.17.0.4:8000,172.17.0.5:8000,172.17.0.6:8000)
+Annotations:  nginx.ingress.kubernetes.io/rewrite-target: /
+Events:
+  Type    Reason  Age                From                      Message
+  ----    ------  ----               ----                      -------
+  Normal  Sync    84s (x2 over 94s)  nginx-ingress-controller  Scheduled for sync
+
+curl http://172.17.255.2/web/index.html
+<html>
+<head/>
+<body>
+<!-- IMAGE BEGINS HERE -->
+<font size="-3">
+...
+```
