@@ -1,0 +1,19 @@
+- name: Start deploy 
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: kubernetes-volumes
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: minio-statefulset.yaml
+        dest: kubernetes-volumes/minio-statefulset.yaml
+       
+ 
