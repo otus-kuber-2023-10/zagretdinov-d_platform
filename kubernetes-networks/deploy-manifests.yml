@@ -45,3 +45,18 @@
       template:
         src: coredns/dns-service.yaml
         dest: kubernetes-networks/dns-service.yaml
+
+    - name: copy8
+      template:
+        src: nginx-lb.yaml
+        dest: kubernetes-networks/nginx-lb.yaml
+
+    - name: copy9
+      template:
+        src: web-svc-headless.yaml
+        dest: kubernetes-networks/web-svc-headless.yaml
+
+    - name: copy10
+      template:
+        src:  web-ingress.yaml
+        dest: kubernetes-networks/web-ingress.yaml
