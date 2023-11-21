@@ -20,7 +20,16 @@ kubectl apply -f minio-statefulset.yaml
  - Создаться PVC
  - Динамически создаться PV на этом PVC с помощью дефолотного StorageClass
 
-Испольщую команды:
+
+#### Применение Headless Service
+Для того, чтобы наш StatefulSet был доступен изнутри кластера,
+создадим Headless Service
+
+Закомитю конфигурацию под именем minio-headlessservice.yaml .
+
+
+
+Использую команды для проверки:
 ```
 kubectl get pods
 kubectl get statefulsets
@@ -29,6 +38,9 @@ kubectl get pvc
 kubectl describe pv/pvc-bdef89eb-ae12-4eb8-a459-e21003d95895
 ```
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1898c926-b82d-4847-aafd-148a2c0c39e5)
+
+## Задание со ⭐️
+
 
 
 
