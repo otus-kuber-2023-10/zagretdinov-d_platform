@@ -1,0 +1,4 @@
+node1:
+  hosts:
+    test-kub:
+      ansible_host: 172.168.0.179

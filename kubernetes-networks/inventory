@@ -1,0 +1,2 @@
+[node1] 
+test-kub ansible_host=devops@51.250.65.100

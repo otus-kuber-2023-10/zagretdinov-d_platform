@@ -1,0 +1,67 @@
+- name: Start deploy 
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: kubernetes-networks
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: web-pod.yaml
+        dest: kubernetes-networks/web-pod.yaml
+       
+    - name: copy2
+      template:
+        src: web-deploy.yaml
+        dest: kubernetes-networks/web-deploy.yaml
+    
+    - name: copy3
+      template:
+        src: web-svc-cip.yaml
+        dest: kubernetes-networks/web-svc-cip.yaml
+
+    - name: copy4
+      template:
+        src: metallb-config.yaml
+        dest: kubernetes-networks/metallb-config.yaml
+
+    - name: copy5
+      template:
+        src: web-svc-lb.yaml
+        dest: kubernetes-networks/web-svc-lb.yaml
+
+    - name: copy6
+      template:
+        src: metallb-config.yaml
+        dest: kubernetes-networks/metallb-config.yaml
+
+    - name: copy7
+      template:
+        src: coredns/dns-service.yaml
+        dest: kubernetes-networks/dns-service.yaml
+
+    - name: copy8
+      template:
+        src: nginx-lb.yaml
+        dest: kubernetes-networks/nginx-lb.yaml
+
+    - name: copy9
+      template:
+        src: web-svc-headless.yaml
+        dest: kubernetes-networks/web-svc-headless.yaml
+
+    - name: copy10
+      template:
+        src:  web-ingress.yaml
+        dest: kubernetes-networks/web-ingress.yaml
+
+    - name: copy11
+      template:
+        src:  dashboard/dashboard-ingress.yaml
+        dest: kubernetes-networks/dashboard-ingress.yaml
