@@ -343,3 +343,23 @@ curl http://172.17.255.2/web/index.html
 <font size="-3">
 ...
 ```
+
+### Задания со ⭐️⭐️ | Ingress для Dashboard
+
+Добавим доступ к kubernetes-dashboard через наш Ingress-прокси: Cервис должен быть доступен через префикс /dashboard.
+
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+cd ./dashboard
+kubectl apply -f dashboard-ingress.yaml
+curl -k https://172.17.255.2/dashboard/
+<!--
+Copyright 2017 The Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+  ...
+```
