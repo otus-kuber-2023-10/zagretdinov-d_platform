@@ -41,6 +41,18 @@ kubectl describe pv/pvc-bdef89eb-ae12-4eb8-a459-e21003d95895
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1898c926-b82d-4847-aafd-148a2c0c39e5)
 
 ## Задание со ⭐️
+В конфигурации нашего StatefulSet данные указаны в открытом виде, что
+не безопасно.
+Для этого создам манифест minio-sec.yaml c зашифрованным кодом.
+
+```
+echo -n minio | base64
+bWluaW8=
+echo -n minio123 | base64
+bWluaW8xMjM=
+```
+
+Отправляю на сервер и запускю. 
 
 
 

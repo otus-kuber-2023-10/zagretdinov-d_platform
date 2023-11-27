@@ -15,5 +15,14 @@
       template:
         src: minio-statefulset.yaml
         dest: kubernetes-volumes/minio-statefulset.yaml
-       
+
+    - name: copy2  
+      template:
+        src: minio-sec.yaml
+        dest: kubernetes-volumes/minio-sec.yaml
+    
+    - name: copy3  
+      template:
+        src: minio-headless-service.yaml
+        dest: kubernetes-volumes/minio-headless-service.yaml
  
