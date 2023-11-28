@@ -52,7 +52,35 @@ echo -n minio123 | base64
 bWluaW8xMjM=
 ```
 
+пароли отображены в манифесте.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8ab1df39-1240-42cd-9cd3-8b701946ef0d)
+
 Отправляю на сервер и запускю. 
+Проверяю с помощью следующих команд.
+```
+kubectl apply -f .
+kubectl describe secret minio-secrets
+kubectl get secret minio-secrets -o yaml
+kubectl describe statefulsets minio
+```
+Вывод на экран.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d6ba1db7-b84a-448c-8521-c8a607130679)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2c0de1a3-f5a3-497f-896d-16d9c7cbfc16)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
