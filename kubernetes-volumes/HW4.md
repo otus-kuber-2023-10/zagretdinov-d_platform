@@ -114,7 +114,7 @@ cat /app/data/data.txt
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/070ba9d9-c8ab-4ad0-ade3-2c0f3e184cac)
 
-
+По результатам видно что после удаление и вновь созданного пода, созданный файлик с содержимым был восстановлен, данные остались не изменными.
 
 
 
