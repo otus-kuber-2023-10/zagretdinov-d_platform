@@ -26,3 +26,24 @@
         src: minio-headless-service.yaml
         dest: kubernetes-volumes/minio-headless-service.yaml
  
+    - name: copy4
+      template:
+        src: my-pv.yaml
+        dest: kubernetes-volumes/my-pv.yaml
+ 
+    - name: copy5
+      template:
+        src: my-pvc.yaml
+        dest: kubernetes-volumes/my-pvc.yaml
+
+    - name: copy6
+      template:
+        src: my-pod.yaml
+        dest: kubernetes-volumes/my-pod.yaml
+    
+    - name: copy7
+      template:
+        src: new-pod.yaml
+        dest: kubernetes-volumes/new-pod.yaml
+    
+ 
