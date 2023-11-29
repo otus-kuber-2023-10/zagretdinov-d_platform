@@ -39,3 +39,8 @@ kubectl auth can-i get pods --as system:serviceaccount:default:dave
 Как видно по результатам dave не получил доступ к кластеру, а bob имеет доступ в кластер и роль админа. 
 
 ####task02
+- Создать Namespace prometheus.
+- Создать Service Account carol в этом Namespace.
+- Дать всем Service Account в Namespace prometheus возможность делать get , list , watch в отношении Pods всего кластера.
+
+
