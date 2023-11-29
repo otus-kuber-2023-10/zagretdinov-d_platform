@@ -43,4 +43,30 @@ kubectl auth can-i get pods --as system:serviceaccount:default:dave
 - Создать Service Account carol в этом Namespace.
 - Дать всем Service Account в Namespace prometheus возможность делать get , list , watch в отношении Pods всего кластера.
 
+В результате создал 4 манифеста и применил их.
+Последующем использовал команды.
+```
+kubectl apply -f .
+kubectl get ns
+kubectl get sa -n prometheus
+kubectl get ClusterRole | grep prometheus-reading
+kubectl describe ClusterRole  prometheus-reading
+kubectl get ClusterRoleBinding  |grep  bind-allclusterpod
+kubectl describe ClusterRoleBinding bind-allclusterpods
+```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ad01fe44-8d66-4ff2-b2f7-32933c814213)
+
+```
+kubectl auth can-i get deployments --as system:serviceaccount:prometheus:carol
+kubectl auth can-i list pods --as system:serviceaccount:prometheus:carol -n prometheus
+kubectl auth can-i list pods --as system:serviceaccount:prometheus:carol
+kubectl auth can-i list pods --as system:serviceaccount:prometheus:cindy -n prometheus
+kubectl auth can-i list pods --as system:serviceaccount:prometheus:cindy
+kubectl auth can-i list pods --as system:serviceaccount:default:dan -n prometheus
+kubectl auth can-i list pods --as system:serviceaccount:default:dan
+```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e29ea6cd-f42f-47b4-aca9-beece69357fb)
+
+
 
