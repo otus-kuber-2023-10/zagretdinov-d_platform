@@ -12,4 +12,7 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 ### [4. Тема: Volumes, Storages, StatefulSet](kubernetes-volumes/HW4.md)
 
+
+### [5. Тема: Security](kubernetes-volumes/HW5.md)
+
 ---
