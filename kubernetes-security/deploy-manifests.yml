@@ -1,0 +1,33 @@
+- name: Start deploy 
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: kubernetes-security
+        state: directory
+    
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task01
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: task01/bob-serviceaccount.yaml
+        dest: kubernetes-security/task01/bob-serviceaccount.yaml
+   
+    - name: copy2
+      template:
+        src: task01/bob-rolebinding.yaml
+        dest: kubernetes-security/task01/bob-rolebinding.yaml
+   
+
+    - name: copy3
+      template:
+        src: task01/dave-serviceaccount.yaml
+        dest: kubernetes-security/task01/dave-serviceaccount.yaml
