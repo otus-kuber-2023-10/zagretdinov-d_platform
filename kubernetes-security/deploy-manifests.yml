@@ -31,3 +31,30 @@
       template:
         src: task01/dave-serviceaccount.yaml
         dest: kubernetes-security/task01/dave-serviceaccount.yaml
+
+
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task02
+        state: directory
+    
+    - name: copy4  
+      template:
+        src: task02/namespace-prometheus.yaml
+        dest: kubernetes-security/task02/namespace-prometheus.yaml
+   
+    - name: copy5
+      template:
+        src: task02/serviceaccount-carol.yaml
+        dest: kubernetes-security/task02/serviceaccount-carol.yaml
+   
+
+    - name: copy6
+      template:
+        src: task02/prometheus-role.yaml
+        dest: kubernetes-security/task02/prometheus-role.yaml
+
+    - name: copy7
+      template:
+        src: task02/rolebinding-pods.yaml
+        dest: kubernetes-security/task02/rolebinding-pods.yaml

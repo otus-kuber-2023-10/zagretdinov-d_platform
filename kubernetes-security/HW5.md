@@ -37,3 +37,5 @@ kubectl auth can-i get pods --as system:serviceaccount:default:dave
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/270611e8-85ad-46bc-9f5b-2feb5d831923)
 
 Как видно по результатам dave не получил доступ к кластеру, а bob имеет доступ в кластер и роль админа. 
+
+####task02
