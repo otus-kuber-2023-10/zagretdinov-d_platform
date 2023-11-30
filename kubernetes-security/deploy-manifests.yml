@@ -58,3 +58,36 @@
       template:
         src: task02/rolebinding-pods.yaml
         dest: kubernetes-security/task02/rolebinding-pods.yaml
+
+
+    
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task03
+        state: directory
+    
+    - name: copy8  
+      template:
+        src: task03/namespace-dev.yaml
+        dest: kubernetes-security/task03/namespace-dev.yaml
+   
+    - name: copy9
+      template:
+        src: task03/rolebinding-jane.yaml
+        dest: kubernetes-security/task03/rolebinding-jane.yaml
+   
+
+    - name: copy10
+      template:
+        src: task03/rolebinding-ken.yaml
+        dest: kubernetes-security/task03/rolebinding-ken.yaml
+
+    - name: copy11
+      template:
+        src: task03/serviceaccount-jane.yaml
+        dest: kubernetes-security/task03/serviceaccount-jane.yaml
+
+    - name: copy12
+      template:
+        src: task03/serviceaccount-ken.yaml
+        dest: kubernetes-security/task03/serviceaccount-ken.yaml

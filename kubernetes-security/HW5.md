@@ -68,5 +68,12 @@ kubectl auth can-i list pods --as system:serviceaccount:default:dan
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e29ea6cd-f42f-47b4-aca9-beece69357fb)
 
+####task03
+
+   - Создать Namespace 'dev'
+   - Создать Service Account 'jane' в Namespace 'dev'
+   - Дать 'jane' роль 'admin' в рамках Namespace 'dev'
+   - Создать Service Account 'ken' в Namespace 'dev'
+   - Дать 'ken' роль 'view' в рамках Namespace 'dev'
 
 
