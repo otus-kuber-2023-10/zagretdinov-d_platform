@@ -18,9 +18,9 @@ spec:
       - name: minio
         env:
         - name: MINIO_ACCESS_KEY
-          value: "minio"
+          value: "bWluaW8="
         - name: MINIO_SECRET_KEY
-          value: "minio123"
+          value: ""
         image: minio/minio:RELEASE.2019-07-10T00-34-56Z
         args:
         - server
