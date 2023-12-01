@@ -20,7 +20,7 @@ spec:
         - name: MINIO_ACCESS_KEY
           value: "bWluaW8="
         - name: MINIO_SECRET_KEY
-          value: ""
+          value: "bWluaW8xMjM="
         image: minio/minio:RELEASE.2019-07-10T00-34-56Z
         args:
         - server
