@@ -125,8 +125,7 @@ bWluaW8=
 echo -n minio123 | base64
 bWluaW8xMjM=
 ```
-Добавляю заменяя 
-
+Добавляю заменяя в манифесте minio-statefulset.yaml на зашифрованные данные и применяю.
 
 
 
