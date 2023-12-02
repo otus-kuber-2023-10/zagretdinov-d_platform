@@ -99,5 +99,6 @@ kubectl auth can-i get deployments --as system:serviceaccount:dev:ken -n dev
 kubectl auth can-i create deployments --as system:serviceaccount:dev:ken -n dev
 ```
 _результат выполнения:_ 
+
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/06334bd4-f744-42eb-b4b1-2d209c474332)
 
