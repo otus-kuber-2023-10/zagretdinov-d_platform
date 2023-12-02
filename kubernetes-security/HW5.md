@@ -88,3 +88,14 @@ kubectl describe RoleBinding -n dev bind-ken
 ```
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2dadd8ff-dae9-4591-9f59-521fc564b571)
+
+Дальше как и предыдущих тасках ввожу команды которые определят сможет ли пользователь выполнить определенное действие.
+
+```
+kubectl auth can-i get deployments --as system:serviceaccount:dev:jane
+kubectl auth can-i create deployments --as system:serviceaccount:dev:jane -n dev
+kubectl auth can-i get deployments --as system:serviceaccount:dev:ken
+kubectl auth can-i get deployments --as system:serviceaccount:dev:ken -n dev
+kubectl auth can-i create deployments --as system:serviceaccount:dev:ken -n dev
+```
+_результат выполнения:_ 
