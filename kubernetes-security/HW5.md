@@ -76,4 +76,14 @@ kubectl auth can-i list pods --as system:serviceaccount:default:dan
    - Создать Service Account 'ken' в Namespace 'dev'
    - Дать 'ken' роль 'view' в рамках Namespace 'dev'
 
+В папке task03 создаю необходимые манифесты и отправляю на сервер.
+
+```
+kubectl apply -f .
+kubectl get ns
+kubectl get sa -n dev
+kubectl get RoleBinding -n dev
+kubectl describe RoleBinding -n dev bind-jane
+kubectl describe RoleBinding -n dev bind-ken
+```
 

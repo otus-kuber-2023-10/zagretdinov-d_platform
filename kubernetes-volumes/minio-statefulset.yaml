@@ -18,9 +18,15 @@ spec:
       - name: minio
         env:
         - name: MINIO_ACCESS_KEY
-          value: "minio"
+          valueFrom:
+            secretKeyRef:
+              name: minio-secrets
+              key: minio-username
         - name: MINIO_SECRET_KEY
-          value: "minio123"
+          valueFrom:
+            secretKeyRef:
+              name: minio-secrets
+              key: minio-password
         image: minio/minio:RELEASE.2019-07-10T00-34-56Z
         args:
         - server
