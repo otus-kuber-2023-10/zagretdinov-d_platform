@@ -86,3 +86,5 @@ kubectl get RoleBinding -n dev
 kubectl describe RoleBinding -n dev bind-jane
 kubectl describe RoleBinding -n dev bind-ken
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2dadd8ff-dae9-4591-9f59-521fc564b571)
