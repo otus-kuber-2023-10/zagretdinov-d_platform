@@ -68,7 +68,7 @@ kubectl auth can-i list pods --as system:serviceaccount:default:dan
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e29ea6cd-f42f-47b4-aca9-beece69357fb)
 
-####task03
+#### task03
 
    - Создать Namespace 'dev'
    - Создать Service Account 'jane' в Namespace 'dev'
@@ -76,14 +76,4 @@ kubectl auth can-i list pods --as system:serviceaccount:default:dan
    - Создать Service Account 'ken' в Namespace 'dev'
    - Дать 'ken' роль 'view' в рамках Namespace 'dev'
 
-В папке task03 создаю необходимые манифесты и отправляю на сервер.
-
-```
-kubectl apply -f .
-kubectl get ns
-kubectl get sa -n dev
-kubectl get RoleBinding -n dev
-kubectl describe RoleBinding -n dev bind-jane
-kubectl describe RoleBinding -n dev bind-ken
-```
 
