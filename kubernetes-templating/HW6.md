@@ -49,3 +49,8 @@ terraform apply --auto-approve
 ```
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ba087122-7d47-4937-892a-8f8467f0ee04)
+
+
+
+
