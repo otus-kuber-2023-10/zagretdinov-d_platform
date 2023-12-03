@@ -15,4 +15,6 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 ### [5. Тема: Security](kubernetes-security/HW5.md)
 
+
+### [6. Тема: Шаблонизация манифестов Kubernetes ](kubernetes-templating/HW6.md)
 ---
