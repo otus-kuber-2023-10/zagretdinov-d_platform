@@ -1,0 +1,45 @@
+---
+- name: Check if kubeadm has already run
+  stat:
+    path: "/etc/kubernetes/pki/ca.key"
+  register: kubeadm_ca
+
+- name: Init cluster if needed
+  command: |
+    kubeadm init --apiserver-cert-extra-sans="{{ node_apiserver_cert_extra_sans }}" \
+    --apiserver-advertise-address="{{ node_apiserver_advertise_address }}" \
+    --control-plane-endpoint="{{ node_control_plane_endpoint }}" \
+    --pod-network-cidr="{{ node_pod_network_cidr }}"
+  register: init_cluster
+  when: not kubeadm_ca.stat.exists
+
+- name: Create k8s config directory for regular user
+  file:
+    path: "/home/{{ node_user }}/.kube"
+    state: directory
+    owner: "{{ node_user }}"
+    group: "{{ node_user }}"
+    mode: 0770
+  when: init_cluster is succeeded
+
+- name: Setup kubeconfig for regular user
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "/home/{{ node_user }}/.kube/config"
+    owner: "{{ node_user }}"
+    group: "{{ node_user }}"
+    mode: 0660
+    remote_src: true
+  when: init_cluster is succeeded
+
+- name: Generate join command
+  command: kubeadm token create --print-join-command
+  register: join_cluster
+  changed_when: False
+  when: init_cluster is succeeded
+
+- name: Add join command to dummy host
+  add_host:
+    name: node_join_command_holder
+    join_command: "{{ join_cluster.stdout }}"
+  changed_when: False

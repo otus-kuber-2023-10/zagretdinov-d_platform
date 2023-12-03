@@ -1,0 +1,6 @@
+---
+node_apiserver_cert_extra_sans: "{{ ansible_host }}"
+node_apiserver_advertise_address: "0.0.0.0"
+node_control_plane_endpoint: "{{ ansible_host }}"
+node_pod_network_cidr: 10.128.0.0/16
+node_user: "{{ ansible_user }}"

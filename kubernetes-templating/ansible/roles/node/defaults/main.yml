@@ -1,0 +1,15 @@
+---
+node_required_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+
+node_version: 1.19.14-00
+
+node_signing_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+node_repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+node_packages:
+  - kubelet={{ node_version }}
+  - kubeadm={{ node_version }}
+  - kubectl={{ node_version }}
+node_user: devops
