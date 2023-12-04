@@ -213,7 +213,8 @@ Helm 3 хранит информацию в secrets:
 ```
 helm ls -n chartmuseum
 ```
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/eabcd098-75cb-4b13-ad13-e171b89e846f)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d1235b96-31da-4fe6-a737-0a3b38c133b8)
 
 Проверяем установку в соответствии с критериями:
 
