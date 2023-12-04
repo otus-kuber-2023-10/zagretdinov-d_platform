@@ -217,4 +217,4 @@ helm ls -n chartmuseum
 
 Проверяем установку в соответствии с критериями:
 
-Chartmuseum доступен по URL https://chartmuseum.158.160.132.85.nip.io
+Chartmuseum доступен по URL https://chartmuseum.158.160.131.174.nip.io/
