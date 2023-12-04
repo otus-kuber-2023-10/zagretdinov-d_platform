@@ -41,9 +41,10 @@ kubectl cluster-info
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ddaacd32-651a-4fee-8849-6231d2df9ddc)
 
 выставил самые минимальные значение для кластера.
-
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/def0c7a5-9e13-493f-a04e-8521a46a1a79)
-
+```
+yc managed-kubernetes cluster list
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fbe63327-e9a1-43a6-b7dd-010cb09a8b45)
 
 ###Устанавливаем готовые Helm charts.
 У себя на локальной машине с помощью команды устанавливаю helm3
