@@ -187,10 +187,8 @@ https://github.com/helm/charts/tree/master/stable/chartmuseum
 Вместо example.com указал EXTERNAL-IP сервиса моего nginx-ingress в формате <IP-адрес.nip.io> просмотренного командой ```kubectl --namespace nginx-ingress get services -o wide```.
 ```
 yc vpc address list
-yc vpc address update --id fl8t9c8hu06jjttb99kt --reserved
+yc vpc address update --id_ip --reserved
 ```
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8853a6dc-b67d-4e64-8c0c-d80c372d12f6)
-
 Создаю файл values.yaml для chartmuseum
 
 Устанавливаю chartmuseum и проверяю:
