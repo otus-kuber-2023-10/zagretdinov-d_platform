@@ -246,5 +246,22 @@ helm upgrade --install harbor harbor/harbor --wait --namespace=harbor --version=
 helm ls -n harbor
 kubectl get secrets -n harbor -l owner=helm
 ```
+в результате:
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ee6e001d-e53c-402b-9dfd-c635ea4af9ee)
+
+### Критерий успешности установки
+• Harbor запущен и работает
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4d0af947-f329-46f9-b8d6-f14d725e7412)
+
+
+
+
+
+
+
+
+
 
 
