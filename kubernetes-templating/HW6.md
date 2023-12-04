@@ -30,7 +30,8 @@ yc init
 yc managed-kubernetes cluster get-credentials $id-cluster --external
 kubectl cluster-info
 ```
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cc2dde5d-3c5c-4d48-8906-daf2dde15992)
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/76aae2c8-e480-49d1-b899-dd497ef9080b)
+
 
 И проверяю так же группу узлов.
 ```
