@@ -159,15 +159,15 @@ helm list --all-namespaces
 
 
 ### Самостоятельное задание
-Для выпуска сертификатов потребуtтся ClusterIssuers. Создаю манифесты staging и production окружений.
+Для выпуска сертификатов потребуется ClusterIssuers. Создаю манифест issuer.yaml.
 
 ```
-kubectl apply -f prod.yaml
-kubectl apply -f stage.yaml
-kubectl describe clusterissuers -n cert-manager
-helm list --all-namespaces
-kubectl --namespace nginx-ingress get services -o wide
+kubectl apply -f issuer.yaml
+kubectl describe issuer.cert-manager.io/letsencrypt-production
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/37dd9429-faa1-4dff-83ed-5ae03bcd5b51)
+
 
 ### chartmuseum
 
