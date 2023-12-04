@@ -256,12 +256,28 @@ kubectl get secrets -n harbor -l owner=helm
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4d0af947-f329-46f9-b8d6-f14d725e7412)
 
 
+### Используем helmfile | Задание со ⭐
 
+Опиcываю установку nginx-ingress, cert-manager и harbor в helmfile
 
+- Скачиваю бинарник
+```
+wget https://github.com/helmfile/helmfile/releases/download/v0.150.0/helmfile_0.150.0_linux_amd64.tar.gz
+```
 
-
-
-
-
-
-
+- Раскпаковываю отправляю в папку bin удаляю архив присваиваю права:
+```
+tar xzvf helmfile_0.150.0_linux_amd64.tar.gz -C /usr/bin
+rm -f helmfile_0.150.0_linux_amd64.tar.gz
+chmod +x ~/bin/helmfile
+```
+устанавливаю плагин
+```
+helm plugin install https://github.com/databus23/helm-diff
+```
+Далее создаю папку values куда копирую целиком папки harbor и chartmuseum.
+Запускаю манифест helmfile.yaml в папке helmfile
+```
+cd helmfile
+helmfile apply
+```
