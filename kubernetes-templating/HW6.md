@@ -183,19 +183,35 @@ kubectl describe issuer.cert-manager.io/letsencrypt-production
 https://github.com/helm/charts/tree/master/stable/chartmuseum
 
 Вместо example.com указал EXTERNAL-IP сервиса моего nginx-ingress в формате <IP-адрес.nip.io> просмотренного командой ```kubectl --namespace nginx-ingress get services -o wide```.
+```
+yc vpc address list
+yc vpc address update --id fl8t9c8hu06jjttb99kt --reserved
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8853a6dc-b67d-4e64-8c0c-d80c372d12f6)
+
+Создаю файл values.yaml для chartmuseum
 
 Устанавливаю chartmuseum и проверяю:
 ```
-helm repo add chartmuseum https://chartmuseum.github.io/charts
-helm repo update
-helm repo list
-cd ~/zagretdinov-d_platform/kubernetes-templating/chartmuseum
+cd ~/zagretdinov-d_platform/kubernetes-templating
 kubectl create ns chartmuseum
-helm install chartmuseum chartmuseum/chartmuseum --wait \
---namespace=chartmuseum \
---version 3.1.0 \
--f values.yaml
+kubectl apply -f cert-manager/acme-issuer.yaml
+helm repo add chartmuseum https://chartmuseum.github.io/charts
+helm repo update chartmuseum
+helm upgrade --install chartmuseum-release chartmuseum/chartmuseum  --wait \
+ --namespace=chartmuseum \
+  --version 3.1.0 \
+  -f chartmuseum/values.yaml
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5a6a4aed-5caa-40a6-a60b-5ce11ab38dbd)
+
+Проверяю, что release chartmuseum установился:
+Helm 3 хранит информацию в secrets:
+```
 helm ls -n chartmuseum
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/eabcd098-75cb-4b13-ad13-e171b89e846f)
 
-https://chartmuseum.158.160.135.13.nip.io
+Проверяем установку в соответствии с критериями:
+
+Chartmuseum доступен по URL https://chartmuseum.158.160.136.158.nip.io
