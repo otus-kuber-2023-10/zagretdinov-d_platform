@@ -30,11 +30,18 @@ yc init
 yc managed-kubernetes cluster get-credentials $id-cluster --external
 kubectl cluster-info
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cc2dde5d-3c5c-4d48-8906-daf2dde15992)
+
 И проверяю так же группу узлов.
 ```
  yc managed-kubernetes cluster --id=$K8S_ID list-node-groups
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ddaacd32-651a-4fee-8849-6231d2df9ddc)
+
 выставил самые минимальные значение для кластера.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/def0c7a5-9e13-493f-a04e-8521a46a1a79)
 
 
 ###Устанавливаем готовые Helm charts.
@@ -45,11 +52,13 @@ helm version
 ```
 В результате получается.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7fd64ca5-bb36-4813-bea9-0521e81389fe)
+
 ### Устанавливаем готовые Helm charts
 - nginx-ingress - сервис, обеспечивающий доступ к публичным ресурсам кластера
 - cert-manager - сервис, позволяющий динамически генерировать Let's Encrypt сертификаты для ingress ресурсов
 - harbor - хранилище артефактов общего назначения (Docker Registry), поддерживающее helm charts
-
+- chartmuseum - специализированный репозиторий для хранения helm charts
 
 ### Памятка по использованию Helm
 ___Создание release:___
@@ -83,13 +92,22 @@ helm repo add stable https://charts.helm.sh/stable --force-update
 helm repo list
 ```
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0277b176-cf4e-4ace-92e5-fe93eb031615)
+
+
 ### nginx-ingress
 Создаю namespace и release nginx-ingress
 
 ```
 kubectl create ns nginx-ingress
-helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=ingress-nginx --create-namespace
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update ingress-nginx
+helm upgrade --install nginx-ingress-release ingress-nginx/ingress-nginx --namespace=nginx-ingress --version="4.4.2"
+
 ```
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4e12615a-2616-4379-ac37-d2ebeb51e0c2)
+
 
 Разбор используемых ключей:
 • --wait - ожидать успешного окончания установки ( )
@@ -99,6 +117,10 @@ helm install ingress-nginx ingress-nginx/ingress-nginx --namespace=ingress-nginx
 • --version - установить определенную версию char
 
 Результат:
+```
+kubectl get services -n nginx-ingress
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f08ae4fc-7387-4091-9023-6cc3de8c087c)
 
 ### cert-manager
 
