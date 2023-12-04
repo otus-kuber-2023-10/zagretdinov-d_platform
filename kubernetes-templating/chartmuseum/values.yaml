@@ -6,10 +6,10 @@ ingress:
    cert-manager.io/cluster-issuer: "letsencrypt-production"
    cert-manager.io/acme-challenge-type: http01
  hosts:
-   - name: chartmuseum.158.160.135.13.nip.io
+   - name: chartmuseum.158.160.131.111.nip.io
      path: /
      tls: true
-     tlsSecret: chartmuseum.158.160.135.13.nip.io
+     tlsSecret: chartmuseum.158.160.131.111.nip.io
 securityContext: {}
 env:
   open:
