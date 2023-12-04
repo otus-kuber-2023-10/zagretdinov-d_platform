@@ -122,6 +122,13 @@ kubectl get services -n nginx-ingress
 ```
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f08ae4fc-7387-4091-9023-6cc3de8c087c)
 
+Обязательно вот тут нужно проверить чтоб был один External-Ip.
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9b428b95-cd44-47e7-9928-6bc0584b6b23)
+
+если будет их два сайт не заработает.
+
+
 ### cert-manager
 
 Добавляю репозиторий, в котором хранится актуальный helm chart cert-manager и создаю namespace:
@@ -132,16 +139,25 @@ kubectl create namespace cert-manager
 ```
 Также для установки cert-manager предварительно потребуется создать в кластере некоторые CRD.
 ```
-kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.13.1/cert-manager.crds.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
 ```
 Установливаю cert-manager и проверяю:
 
 ```
-helm upgrade --install cert-manager jetstack/cert-manager --wait \
---namespace=cert-manager \
---version=1.13.1
+helm install \
+cert-manager jetstack/cert-manager \
+--namespace cert-manager \
+--create-namespace \
+--version v1.11.0
+
 kubectl get pods --namespace cert-manager
+helm list --all-namespaces
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7203ba59-7d3f-4a86-9429-fc36a9c473b7)
+
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/74ef72e6-d8f8-4a89-8c72-c5ad4146fdf7)
+
+
 ### Самостоятельное задание
 Для выпуска сертификатов потребуtтся ClusterIssuers. Создаю манифесты staging и production окружений.
 
