@@ -120,11 +120,13 @@ helm upgrade --install nginx-ingress-release ingress-nginx/ingress-nginx --names
 ```
 kubectl get services -n nginx-ingress
 ```
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/f08ae4fc-7387-4091-9023-6cc3de8c087c)
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ad8ab4b8-ca51-452d-a4c8-7f5ccb0896c2)
+
 
 Обязательно вот тут нужно проверить чтоб был один External-Ip.
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9b428b95-cd44-47e7-9928-6bc0584b6b23)
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/925bd7b8-23dd-4353-899f-50f77c0fc1a4)
+
 
 если будет их два сайт не заработает.
 
