@@ -198,7 +198,7 @@ yc vpc address update --id_ip --reserved
 ```
 cd ~/zagretdinov-d_platform/kubernetes-templating
 kubectl create ns chartmuseum
-kubectl apply -f cert-manager/acme-issuer.yaml
+kubectl apply -f cert-manager/issuer.yaml
 helm repo add chartmuseum https://chartmuseum.github.io/charts
 helm repo update chartmuseum
 helm upgrade --install chartmuseum-release chartmuseum/chartmuseum  --wait \
