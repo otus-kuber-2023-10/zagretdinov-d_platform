@@ -226,3 +226,14 @@ Chartmuseum доступен по URL https://chartmuseum.158.160.131.174.nip.io
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d2f15c13-495d-4461-bcaf-7f81761eda0f)
 
 
+## harbor
+
+### Самостоятельное задание
+
+Установка harbor
+
+```
+helm repo add harbor https://helm.goharbor.io
+helm repo update harbor
+kubectl create ns harbor
+```
