@@ -1,0 +1,49 @@
+- name: Start deploy 
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: kubernetes-volumes
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: minio-statefulset.yaml
+        dest: kubernetes-volumes/minio-statefulset.yaml
+
+    - name: copy2  
+      template:
+        src: minio-sec.yaml
+        dest: kubernetes-volumes/minio-sec.yaml
+    
+    - name: copy3  
+      template:
+        src: minio-headless-service.yaml
+        dest: kubernetes-volumes/minio-headless-service.yaml
+ 
+    - name: copy4
+      template:
+        src: my-pv.yaml
+        dest: kubernetes-volumes/my-pv.yaml
+ 
+    - name: copy5
+      template:
+        src: my-pvc.yaml
+        dest: kubernetes-volumes/my-pvc.yaml
+
+    - name: copy6
+      template:
+        src: my-pod.yaml
+        dest: kubernetes-volumes/my-pod.yaml
+    
+    - name: copy7
+      template:
+        src: new-pod.yaml
+        dest: kubernetes-volumes/new-pod.yaml
+    
+ 

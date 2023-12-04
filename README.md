@@ -9,4 +9,10 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 ### [3. Тема: Сетевое взаимодействие Pod,взаимодействие Pod, сервисы](kubernetes-networks/HW3.md)
 
+
+### [4. Тема: Volumes, Storages, StatefulSet](kubernetes-volumes/HW4.md)
+
+
+### [5. Тема: Security](kubernetes-security/HW5.md)
+
 ---

@@ -1,0 +1,93 @@
+- name: Start deploy 
+  hosts: test-kub
+  remote_user: devops
+  become: yes
+  become_method: sudo
+  #vars_files: 
+  #         - ../defaults/main.yml
+  tasks:
+    - name: Creates directory
+      file:
+        path: kubernetes-security
+        state: directory
+    
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task01
+        state: directory
+    
+    - name: copy1  
+      template:
+        src: task01/bob-serviceaccount.yaml
+        dest: kubernetes-security/task01/bob-serviceaccount.yaml
+   
+    - name: copy2
+      template:
+        src: task01/bob-rolebinding.yaml
+        dest: kubernetes-security/task01/bob-rolebinding.yaml
+   
+
+    - name: copy3
+      template:
+        src: task01/dave-serviceaccount.yaml
+        dest: kubernetes-security/task01/dave-serviceaccount.yaml
+
+
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task02
+        state: directory
+    
+    - name: copy4  
+      template:
+        src: task02/namespace-prometheus.yaml
+        dest: kubernetes-security/task02/namespace-prometheus.yaml
+   
+    - name: copy5
+      template:
+        src: task02/serviceaccount-carol.yaml
+        dest: kubernetes-security/task02/serviceaccount-carol.yaml
+   
+
+    - name: copy6
+      template:
+        src: task02/prometheus-role.yaml
+        dest: kubernetes-security/task02/prometheus-role.yaml
+
+    - name: copy7
+      template:
+        src: task02/rolebinding-pods.yaml
+        dest: kubernetes-security/task02/rolebinding-pods.yaml
+
+
+    
+    - name: Creates directory
+      file:
+        path: kubernetes-security/task03
+        state: directory
+    
+    - name: copy8  
+      template:
+        src: task03/namespace-dev.yaml
+        dest: kubernetes-security/task03/namespace-dev.yaml
+   
+    - name: copy9
+      template:
+        src: task03/rolebinding-jane.yaml
+        dest: kubernetes-security/task03/rolebinding-jane.yaml
+   
+
+    - name: copy10
+      template:
+        src: task03/rolebinding-ken.yaml
+        dest: kubernetes-security/task03/rolebinding-ken.yaml
+
+    - name: copy11
+      template:
+        src: task03/serviceaccount-jane.yaml
+        dest: kubernetes-security/task03/serviceaccount-jane.yaml
+
+    - name: copy12
+      template:
+        src: task03/serviceaccount-ken.yaml
+        dest: kubernetes-security/task03/serviceaccount-ken.yaml
