@@ -22,16 +22,7 @@ source "/home/damir/.bashrc"
 yc config profile create devops
 yc config set folder-id <>
 yc init
-[1] Re-initialize this profile 'devops' with new settings
-Please go to https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb in order to obtain OAuth token.
-
-Please choose folder to use:
-
-Do you want to configure a default Compute zone? [Y/n] y
-Which zone do you want to use as a profile default?
- [1] ru-central1-a
 ```
-
 Далее создаю managed kubernetes кластер в облаке YC, а так же группу узлов. Все настройки для более детального изучения буду настраивать в web итерфейсе YC.
 
 Настроиваю kubectl на локальной машине и с помощью команд подключаюсь и проверяю.
