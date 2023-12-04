@@ -237,3 +237,14 @@ helm repo add harbor https://helm.goharbor.io
 helm repo update harbor
 kubectl create ns harbor
 ```
+
+Правлю harbor/values.yaml в части 'ingress'
+```
+helm search repo harbor -l
+helm search repo harbor
+helm upgrade --install harbor harbor/harbor --wait --namespace=harbor --version=1.11.0 -f ./harbor/values.yaml
+helm ls -n harbor
+kubectl get secrets -n harbor -l owner=helm
+```
+
+
