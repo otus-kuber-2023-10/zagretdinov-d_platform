@@ -27,7 +27,7 @@ yc init
 
 Настроиваю kubectl на локальной машине и с помощью команд подключаюсь и проверяю.
 ```
-yc managed-kubernetes cluster get-credentials devops-cluster --external
+yc managed-kubernetes cluster get-credentials $id-cluster --external
 kubectl cluster-info
 ```
 И проверяю так же группу узлов.
