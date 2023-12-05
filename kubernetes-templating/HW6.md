@@ -327,7 +327,45 @@ kubectl get svc -A | grep NodePort
 Проверяю работу UI
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/69cfd33d-ebc6-4ab1-b989-8e49a3379d61)
 
+Выносим все что связано с frontend в отдельный helm chart.
 
+Аналогично чарту hipster-shop удаляю файл values.yaml и файлы в директории templates , создаваемые по умолчанию.
+```
+rm -rf frontend/templates
+rm -f frontend/values.yaml
+```
+Выделим из файла all-hipster-shop.yaml манифесты для установки микросервиса frontend. В директории templates чарта frontend создадим файлы:
+
+- deployment.yaml - должен содержать соответствующую часть из файла all-hipster-shop.yaml
+- service.yaml - должен содержать соответствующую часть из файла allhipster-shop.yaml
+- ingress.yaml - создадим самостоятельно.
+
+Переустановили 'hipster-shop'
+
+```
+helm upgrade --install hipster-shop-release hipster-shop --namespace hipster-shop
+helm ls -n hipster-shop
+```
+
+Доступ к UI пропал и таких ресурсов больше нет
+```
+kubectl get svc -A | grep NodePort | wc -l 
+```
+
+Установим chart frontend в namespace hipster-shop и проверим что доступ к UI вновь появился:
+
+```
+helm upgrade --install frontend-release frontend --namespace hipster-shop
+kubectl get svc -n hipster-shop | grep NodePort 
+kubectl get ingress -A
+```
+
+Проверяю работу UI
+
+
+
+
+```
 
 
 
