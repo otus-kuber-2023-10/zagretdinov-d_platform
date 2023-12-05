@@ -379,13 +379,49 @@ kubectl describe  pods -n hipster-shop -l app=frontend | grep -i image
 
 Аналогичным образом шаблонизирую следующие параметры frontend chart
 
-    Количество реплик в deployment
-    Port, targetPort и NodePort в service
-    Опционально - тип сервиса. Ключ NodePort должен появиться в манифесте только если тип сервиса - NodePort
-    Другие параметры, которые на наш взгляд стоит шаблонизировать
+- Количество реплик в deployment
+- Port, targetPort и NodePort в service
+- Опционально - тип сервиса. Ключ NodePort должен появиться в манифесте только если тип сервиса - NodePort
+- Другие параметры, которые на наш взгляд стоит шаблонизировать
 
-Проверяем шаблонизированные чарты:
+Проверяю шаблонизированные чарты:
+```
+helm template frontend  -f frontend/values.yaml
+helm upgrade --install frontend-release frontend --namespace hipster-shop -f frontend/values.yaml \
+--dry-run
+```
 
+Включаю созданный чарт frontend в зависимости большого микросервисного приложения hipster-shop. Для начала, удаляю release frontend из кластера:
+```
+helm delete frontend-release -n hipster-shop
+```
+Добавляю chart frontend как зависимость в hipster-shop/Chart.yaml
+
+```
+dependencies:
+  - name: frontend
+    version: 0.1.0
+    repository: "file://../frontend"
+```
+
+Обновляю.
+```
+helm dep update hipster-shop
+```
+В директории kubernetes-templating/hipster-shop/charts появился архив frontend-0.1.0.tgz содержащий chart frontend определенной версии и добавленный в chart hipster-shop как зависимость.
+
+```
+helm ls -A
+helm upgrade hipster-shop-release -n hipster-shop hipster-shop
+kubectl get all -A -l app=frontend
+```
+Обновляю release hipster-shop и убеждаюсь, что ресурсы frontend вновь созданы
+
+Осталось понять, как из CI-системы мы можем менять параметры helm chart, описанные в values.yaml. Для этого существует специальный ключ --set. Изменим NodePort для frontend в release, не меняя его в самом chart:
+```
+helm upgrade --install hipster-shop-release hipster-shop -n hipster-shop --set frontend.service.NodePort=31234
+kubectl get svc -n hipster-shop -l app=frontend
+```
 
 
 

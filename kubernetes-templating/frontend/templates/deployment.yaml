@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
       app: frontend
