@@ -281,3 +281,48 @@ helm plugin install https://github.com/databus23/helm-diff
 cd helmfile
 helmfile apply
 ```
+
+# Создаем свой helm chart
+
+__Типичнаяжизненнаяситуация:__
+
+•  Есть приложение, которое готово к запуску в Kubernetes
+•  Есть манифесты для этого приложения,  но надо запускать его на разных окружениях сразными параметрами 
+
+__Возможные варианты решения:__
+•  Написать разные манифесты для разных окружений
+•  Использовать "костыли" - sed, envsubst, etc...
+•  Использовать полноценное решение для шаблонизации (helm, etc...)
+
+Рассмотриваем третий вариант.
+Использовать будем демо-приложение, hipster-shop https://github.com/GoogleCloudPlatform/microservices-demo  представляющее собой типичный набор микросервисов.
+
+Стандартными средствами helm инициализируем структуру директории с содержимым будущего helm chart
+
+```
+helm create hipster-shop
+```
+Мы будем создавать chart для приложения с нуля, поэтому удалим values.yaml и содержимое templates
+```
+rm ./hipster-shop/values.yaml
+rm -rf ./hipster-shop/templates/*
+wget https://raw.githubusercontent.com/express42/otus-platform-snippets/master/Module-04/05-Templating/manifests/all-hipster-shop.yaml \
+-O ./hipster-shop/templates/all-hipster-shop.yaml
+```
+В целом, helm chart уже готов, можем попробовать установить его:
+```
+kubectl create ns hipster-shop
+helm upgrade --install hipster-shop-release hipster-shop --namespace hipster-shop
+helm ls -n hipster-shop
+```
+```
+kubectl get services -n hipster-shop
+kubectl get nodes -o wide
+kubectl get svc -A | grep NodePort
+```
+Проверяю работу UI
+
+
+
+
+
