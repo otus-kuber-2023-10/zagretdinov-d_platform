@@ -315,12 +315,17 @@ kubectl create ns hipster-shop
 helm upgrade --install hipster-shop-release hipster-shop --namespace hipster-shop
 helm ls -n hipster-shop
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/90ed5ba2-d4a2-43fb-bdb0-bd2c88cc3034)
+
 ```
 kubectl get services -n hipster-shop
 kubectl get nodes -o wide
 kubectl get svc -A | grep NodePort
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/70db9cdd-3971-43ca-b9ab-a9681e1d990f)
+
 Проверяю работу UI
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/69cfd33d-ebc6-4ab1-b989-8e49a3379d61)
 
 
 
