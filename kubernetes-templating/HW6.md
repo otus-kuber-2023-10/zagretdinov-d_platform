@@ -411,6 +411,8 @@ helm dep update hipster-shop
 ```
 В директории kubernetes-templating/hipster-shop/charts появился архив frontend-0.1.0.tgz содержащий chart frontend определенной версии и добавленный в chart hipster-shop как зависимость.
 
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/8d8f899a-f788-4081-8625-4ccfd4eaf66a)
+
 ```
 helm ls -A
 helm upgrade hipster-shop-release -n hipster-shop hipster-shop
