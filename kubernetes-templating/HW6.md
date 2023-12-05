@@ -432,4 +432,11 @@ kubectl get svc -n hipster-shop -l app=frontend
 
 ## Создаем свой helm chart | Задание со ⭐
 
+Добавил чарт redis как зависимость в hipster-shop/Chart.yaml
+```
+  - name: redis
+    version: 17.6.0
+    repository: https://charts.bitnami.com/bitnami
+```
 
+Обновляю зависимости:
