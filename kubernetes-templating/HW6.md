@@ -418,14 +418,15 @@ kubectl get all -A -l app=frontend
 ```
 Обновляю release hipster-shop и убеждаюсь, что ресурсы frontend вновь созданы
 
-![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1b6d146a-b228-46b5-a38c-9b630cb1aaaf)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/113cff9c-c7a3-490b-9270-2b57a1c7c4bf)
 
 Осталось понять, как из CI-системы мы можем менять параметры helm chart, описанные в values.yaml. Для этого существует специальный ключ --set. Изменим NodePort для frontend в release, не меняя его в самом chart:
 ```
 helm upgrade --install hipster-shop-release hipster-shop -n hipster-shop --set frontend.service.NodePort=31234
 kubectl get svc -n hipster-shop -l app=frontend
 ```
-![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/1b806574-314d-44a2-90d6-f9f7767468db)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/90ce52f4-2cd8-4c1e-a375-b9cb2681aac4)
 
 
 
