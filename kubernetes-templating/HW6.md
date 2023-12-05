@@ -428,6 +428,6 @@ kubectl get svc -n hipster-shop -l app=frontend
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/90ce52f4-2cd8-4c1e-a375-b9cb2681aac4)
 
-
+## Создаем свой helm chart | Задание со ⭐
 
 
