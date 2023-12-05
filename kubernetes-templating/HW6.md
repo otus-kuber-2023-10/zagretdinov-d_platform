@@ -346,8 +346,12 @@ rm -f frontend/values.yaml
 helm upgrade --install hipster-shop-release hipster-shop --namespace hipster-shop
 helm ls -n hipster-shop
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d4bb5cc3-fcf1-4b06-b32d-34ce921f7e0e)
 
 Доступ к UI пропал и таких ресурсов больше нет
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/e8f3b088-ae6b-4134-a2ea-d9e91b762a73)
+
 ```
 kubectl get svc -A | grep NodePort | wc -l 
 ```
@@ -359,8 +363,10 @@ helm upgrade --install frontend-release frontend --namespace hipster-shop
 kubectl get svc -n hipster-shop | grep NodePort 
 kubectl get ingress -A
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/97f582bc-eb9e-4d8f-942a-2b89955dc1cb)
 
 Проверяю работу UI
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b07697fc-d235-470f-beee-fbc7a1214573)
 
 
 
