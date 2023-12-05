@@ -368,10 +368,12 @@ kubectl get ingress -A
 Проверяю работу UI
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b07697fc-d235-470f-beee-fbc7a1214573)
 
-
-
-
+Создаю frontend/values.yaml, добавляю .image.tag, изменяю frontend/templates/deployment.yaml, перезапускаю обновления чарта:
 ```
+helm upgrade --install frontend-release frontend --namespace hipster-shop -f frontend/values.yaml
+kubectl describe  pods -n hipster-shop -l app=frontend | grep -i image
+```
+
 
 
 
