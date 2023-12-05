@@ -438,5 +438,8 @@ kubectl get svc -n hipster-shop -l app=frontend
     version: 17.6.0
     repository: https://charts.bitnami.com/bitnami
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/db470182-436c-4c15-b6ba-5b70fad12314)
+
+
 
 Обновляю зависимости:
