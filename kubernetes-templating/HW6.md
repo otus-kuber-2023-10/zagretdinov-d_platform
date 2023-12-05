@@ -373,6 +373,19 @@ kubectl get ingress -A
 helm upgrade --install frontend-release frontend --namespace hipster-shop -f frontend/values.yaml
 kubectl describe  pods -n hipster-shop -l app=frontend | grep -i image
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0e1bdeea-ce2e-4ae2-a5fb-01465aece7b4)
+
+Видим, что ничего не изменилось в части тэга образа.
+
+Аналогичным образом шаблонизирую следующие параметры frontend chart
+
+    Количество реплик в deployment
+    Port, targetPort и NodePort в service
+    Опционально - тип сервиса. Ключ NodePort должен появиться в манифесте только если тип сервиса - NodePort
+    Другие параметры, которые на наш взгляд стоит шаблонизировать
+
+Проверяем шаблонизированные чарты:
+
 
 
 
