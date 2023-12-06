@@ -445,16 +445,126 @@ kubectl get svc -n hipster-shop -l app=frontend
 ## Работа с helm-secrets | Необязательное задание
 
 Разберемся как работает плагин helm-secrets. Для этого добавим в Helm chart секрет и научимся хранить его в зашифрованном виде.
+Для начало чтоб разобраться и заняться этим заданием я предварительно установлю socs так как уменя его нет для это скачаю бинарник и перемесщю его в bin.
+```
+wget https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64
+sudo mv sops-v3.7.3.linux.amd64 /usr/bin/sops
+chmod +x /usr/bin/sops
+```
+__Обязательно проверить установлен ли gpg...__
+Сгенерируем новый PGP ключ:
+```
+gpg --full-generate-key
+gpg -k
 
+```
+
+Отвечаю на все вопросы. После этого что ключ появился:
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/4c4b2a10-71e8-47d5-9e39-05e802fa74b4)
+
+Создаю новый файл secrets.yaml в директории ./frontend со следующим содержимым:
+```
+visibleKey: hiddenValue
+```
+
+И попробуем зашифровать его:
+```
+sops -e -i --pgp AF7EB27A743B93B5DBCFE90985F08E03D9B5CD75 frontend/secrets.yaml
+```
+
+и в результате файл secrets.yaml изменился
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/dc49ac30-881f-4b17-ac09-9012f6a56f19)
+
+Для расшифровки можно использовать любой из инструментов:
+```
+# helm secrets
+helm secrets decrypt ./frontend/secrets.yaml
+
+# sops
+sops -d ./frontend/secrets.yaml
+```
+Создадим в директории ./frontend/templates еще один файл secret.yaml. Несмотря на похожее название его предназначение будет отличаться.
+
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+type: Opaque
+data:
+  visibleKey: {{ .Values.visibleKey | b64enc | quote }}
+```
+Теперь, если мы передадим в helm файл secrets.yaml как values файл плагин helm-secrets поймет, что его надо расшифровать, а значение ключа visibleKey подставить в соответствующий шаблон секрета. Запустим установку:
+```
+helm secrets upgrade --install frontend ./frontend -n hipster-shop \
+ -f ./frontend/values.yaml \
+ -f ./frontend/secrets.yaml
+```
+
+Проверяю, что секрет создан, и его содержимое соответствует ожиданиям:
+```
+kubectl get secret secret -n hipster-shop -o yaml | grep visibleKey | awk '{print $2}' | base64 -d -
+hiddenValue%
+```
 
 ## Kubecfg
 
 Вынесем манифесты описывающие service и deployment микросервисов paymentservice и shippingservice из файла all-hipster-shop.yaml в директорию ./kubecfg
-
+```
 tree -L 1 kubecfg
+```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d573bf3c-3813-4de9-ba60-ad169d5fab22)
+
+```
 helm upgrade hipster-shop-release -n hipster-shop hipster-shop
+```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/cca707ef-ef93-4e7c-9014-f5af4ac61b22)
+
+Проверяю, что микросервисы paymentservice и shippingservice исчезли из установки и магазин стал работать некорректно (при нажатии на кнопку Add to Cart)
+```
 kubectl get all -A -l app=paymentservice
 kubectl get all -A -l app=shippingservice
+```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5b95adac-671b-427f-b670-9d153f44350a)
+
+Установим kubecfg
+```
+wget https://github.com/vmware-archive/kubecfg/releases/download/v0.22.0/kubecfg-linux-amd64
+install kubecfg-linux-amd64 ~/bin/kubecfg
+rm -f kubecfg-linux-amd64
+kubecfg version
+```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/68a411fc-12ca-48f8-93f0-5d8b82b32896)
+
+Kubecfg предполагает хранение манифестов в файлах формата .jsonnet и их генерацию перед установкой. Пример такого файла можно найти в официальном репозитории Напишем по аналогии свой .jsonnet файл - services.jsonnet. Для начала в файле мы должны указать libsonnet библиотеку, которую будем использовать для генерации манифестов. В домашней работе воспользуемся готовой от от bitnami Импортируем ее:
+
+```
+local kube = import "https://github.com/bitnami-labs/kube-libsonnet/raw/52ba963ca44f7a4960aeae9ee0fbee44726e481f/kube.libsonnet";
+```
+Общая логика задачи следующая:
+
+ - Пишем общий для сервисов , включающий описание service и deployment  
+ - Наследуемся от него, указывая параметры для конкретных сервисов: payment-shipping.jsonnet
+| Рекомендуем не заглядывать в сниппеты в ссылках и попробовать самостоятельно разобраться с jsonnet В качестве подсказки можно использовать и готовый services.jsonnet , который должен выглядеть примерно следующим образом: services.jsonnet
+
+Проверяю, что манифесты генерируются корректно:
+```
+kubecfg show kubecfg/services.jsonnet
+```
+Установка:
+```
+kubecfg update kubecfg/services.jsonnet --namespace hipster-shop
+```
+
+Проверяю установку:
+```
+kubectl get all -A -l app=paymentservice
+kubectl get all -A -l app=shippingservice
+```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2ce7cc54-7240-4087-a822-f115b84fd591)
+
 
 ## Kustomize | Самостоятельное задание
 
