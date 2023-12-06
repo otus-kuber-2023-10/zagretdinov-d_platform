@@ -438,8 +438,28 @@ kubectl get svc -n hipster-shop -l app=frontend
     version: 17.6.0
     repository: https://charts.bitnami.com/bitnami
 ```
+Обновляю зависимости:
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/db470182-436c-4c15-b6ba-5b70fad12314)
 
+## Работа с helm-secrets | Необязательное задание
+
+Разберемся как работает плагин helm-secrets. Для этого добавим в Helm chart секрет и научимся хранить его в зашифрованном виде.
 
 
-Обновляю зависимости:
+## Kubecfg
+
+Вынесем манифесты описывающие service и deployment микросервисов paymentservice и shippingservice из файла all-hipster-shop.yaml в директорию ./kubecfg
+
+tree -L 1 kubecfg
+helm upgrade hipster-shop-release -n hipster-shop hipster-shop
+kubectl get all -A -l app=paymentservice
+kubectl get all -A -l app=shippingservice
+
+## Kustomize | Самостоятельное задание
+
+Отпилим еще один (любой) микросервис из all-hipster-shop.yaml и самостоятельно займитесь его kustomизацией. В минимальном варианте достаточно реализовать установку на два окружения - hipster-shop (namespace hipster-shop ) и hipster- shop-prod (namespace hipster-shop-prod ) из одних манифестов deployment и service Окружения должны отличаться:
+
+    Набором labels во всех манифестах
+    Префиксом названий ресурсов
+    Image Tag, Memory Limits, Replicas
