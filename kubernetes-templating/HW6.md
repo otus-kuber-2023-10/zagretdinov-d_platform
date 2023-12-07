@@ -569,8 +569,12 @@ kubectl get all -A -l app=shippingservice
 
 ## Kustomize | Самостоятельное задание
 
-Отпилим еще один (любой) микросервис из all-hipster-shop.yaml и самостоятельно займитесь его kustomизацией. В минимальном варианте достаточно реализовать установку на два окружения - hipster-shop (namespace hipster-shop ) и hipster- shop-prod (namespace hipster-shop-prod ) из одних манифестов deployment и service Окружения должны отличаться:
+Вырежу еще один микросервис из all-hipster-shop.yaml и самостоятельно займусь его kustomизацией. Реализовываю установку на два окружения - hipster-shop (namespace hipster-shop ) и hipster-shop-prod (namespace hip-shop-prod ) из одних манифестов deployment и service Окружения должны отличаться:
 
-    Набором labels во всех манифестах
-    Префиксом названий ресурсов
-    Image Tag, Memory Limits, Replicas
+- Набором labels во всех манифестах
+- Префиксом названий ресурсов
+- Image Tag, Memory Limits, Replicas
+
+kubectl apply -k ./kustomize/overrides/dev
+kubectl apply -k ./kustomize/overrides/prod
+

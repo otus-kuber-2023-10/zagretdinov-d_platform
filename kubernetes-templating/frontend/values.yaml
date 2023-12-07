@@ -16,3 +16,5 @@ service:
 ingress:
   enabled: true
   host: shop.158.160.131.174.sslip.io
+
+  
