@@ -574,7 +574,7 @@ kubectl get all -A -l app=shippingservice
 - Набором labels во всех манифестах
 - Префиксом названий ресурсов
 - Image Tag, Memory Limits, Replicas
-
+```
 kubectl apply -k ./kustomize/overrides/dev
 kubectl apply -k ./kustomize/overrides/prod
-
+```
