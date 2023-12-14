@@ -112,6 +112,7 @@ kubectl get crd
 kubectl get mysqls.otus.homework
 kubectl describe mysqls.otus.homework mysql-instance
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/92994b3e-7fb5-4fae-88e9-e79523868569)
 
 
 
