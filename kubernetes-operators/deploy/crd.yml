@@ -1,47 +1,68 @@
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: mysqls.otus.homework
+  name: mysqls.otus.homework # имя CRD должно иметь формат plural.group
 spec:
-  group: otus.homework
-  preserveUnknownFields: false
-  versions:
+  scope: Namespaced     # Данный CRD будер работать в рамках namespace
+  group: otus.homework  # Группа, отражается в поле apiVersion CR
+  versions:             # Список версий
     - name: v1
-      served: true
-      storage: true
+      # флаг актуальности версии CRD
+      served: true      # Будет ли обслуживаться API-сервером данная версия
+      storage: true     # Фиксирует  версию описания, которая будет сохраняться в etcd
       schema:
+        # описание схемы yaml-документа
         openAPIV3Schema:
-          type: object
+          description: MySQL is the Schema for the MySQL API
           properties:
-            # x-kubernetes-preserve-unknown-fields: false
+            # версия api (позволит делать разные версии для API)
             apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+                of an object. Servers should convert recognized schemas to the latest
+                internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
               type: string
+            # тип ресурса (в нашем случае будет MySQL)
             kind:
+              description: 'Kind is a string value representing the REST resource this
+                object represents. Servers may infer this from the endpoint the client
+                submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
               type: string
+            # описание метаданных (.meta) - определяется по схеме metav1.ObjectMeta
             metadata:
               type: object
-              properties:
-                name:
-                  type: string
+            # описание спецификации кластера (.spec) - в соответствии со схемой
             spec:
-              type: object
+              description: MySQLSpec defines the desired state of MySQL
               properties:
+                # свойства спецификации кластера (.spec)
                 image:
+                  description: image for MySQL
                   type: string
                 database:
+                  description: MySQL database name
                   type: string
                 password:
+                  description: MySQL admin password
                   type: string
                 storage_size:
+                  description: MySQL storage size
                   type: string
-              required: ["image", "database", "password", "storage_size"]
-          required: ["apiVersion", "kind", "metadata", "spec"]
-  scope: Namespaced
-  names:
-    kind: MySQL
-    plural: mysqls
+              required:
+              - image
+              - database
+              - password
+              - storage_size
+              type: object
+            # назначение ключа объекта yaml .status (пустой объект)
+            status:
+              x-kubernetes-preserve-unknown-fields: true
+              description: MySQLStatus defines the observed state of MySQL
+              type: object
+          type: object
+
+  names:                # различные форматы имени объекта CR
+    kind: MySQL         # kind CR
+    plural: mysqls      
     singular: mysql
     shortNames:
       - ms
-     

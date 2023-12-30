@@ -25,3 +25,58 @@
       template:
         src: deploy/crd.yml
         dest: kubernetes-operators/deploy/crd.yml
+
+    - name: copy3  
+      template:
+        src: deploy/service-account.yml
+        dest: kubernetes-operators/deploy/service-account.yml
+
+    - name: copy4  
+      template:
+        src: deploy/role.yml
+        dest: kubernetes-operators/deploy/role.yml
+
+    - name: copy5  
+      template:
+        src: deploy/role-binding.yml
+        dest: kubernetes-operators/deploy/role-binding.yml
+
+    - name: copy6  
+      template:
+        src: deploy/deploy-operator.yml
+        dest: kubernetes-operators/deploy/deploy-operator.yml
+
+
+    - name: Creates directory2
+      file:
+        path: kubernetes-operators/build
+        state: directory
+
+    - name: Creates directory3
+      file:
+        path: kubernetes-operators/build/templates
+        state: directory
+
+    - name: copy files  
+      copy:
+        src: '{{item}}'
+        dest: kubernetes-operators/build
+
+      loop:
+      - build/mysql-operator.py
+      - build/Dockerfile
+
+    - name: copy files2  
+      copy:
+        src: '{{item}}'
+        dest: kubernetes-operators/build/templates
+
+      loop:
+      - build/templates/backup-job.yml.j2
+      - build/templates/backup-pv.yml.j2
+      - build/templates/backup-pvc.yml.j2
+      - build/templates/mysql-deployment.yml.j2
+      - build/templates/mysql-pv.yml.j2
+      - build/templates/mysql-pvc.yml.j2
+      - build/templates/mysql-service.yml.j2
+      - build/templates/restore-job.yml.j2
