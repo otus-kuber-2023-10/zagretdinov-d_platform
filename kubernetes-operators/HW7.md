@@ -119,9 +119,16 @@ def mysql_on_create(body, spec, **kwargs):
     api = kubernetes.client.AppsV1Api()
     api.create_namespaced_deployment('default', deployment)
 ```
+С такой конфигурацие уже должны обрабатываться события при cоздании cr.yml, проверим, для этого из папки build:
+```
+kopf run mysql-operator.py
+```
+cr.yml был до этого применен, то вот:
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c8103c0d-d795-495e-a233-d2b8bc6eb769)
 
-
+Вопрос: почему объект создался, хотя мы создали CR, до того, как запустили контроллер?
+Оператор проверяет наличе созданных CR. Объект создался автоматически для того чтобы после рестарта или удаления CustomResource оператор мог нормально функционировать.
 
 ### Деплой оператора
 
