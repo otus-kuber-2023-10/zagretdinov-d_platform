@@ -162,6 +162,7 @@ def delete_object_make_backup(body, **kwargs):
 
 Перезапускаю контроллер, создаю и удаляю mysql-instance, проверяю что все pv, pvc, svc и deployments удалились.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a68bcc27-bff2-48d5-be5e-e75690303204)
 
 
 
