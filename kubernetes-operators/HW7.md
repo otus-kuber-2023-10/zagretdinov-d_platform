@@ -164,6 +164,105 @@ def delete_object_make_backup(body, **kwargs):
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a68bcc27-bff2-48d5-be5e-e75690303204)
 
+Теперь добавим создание   pv,   pvc  для   backup  и   restore   job. Для этого после создания deployment добавим следующий код:
+
+```
+# Cоздаем PVC  и PV длябэкапов:
+try:        
+    backup_pv = render_template('backup-pv.yml.j2', {'name': name})        
+    api = kubernetes.client.CoreV1Api()        
+    api.create_persistent_volume(backup_pv)
+except kubernetes.client.rest.ApiException:
+    pass
+try:        
+    backup_pvc = render_template('backup-pvc.yml.j2', {'name': name})        
+    api = kubernetes.client.CoreV1Api()        
+    api.create_namespaced_persistent_volume_claim('default', backup_pvc)
+except kubernetes.client.rest.ApiException:pass
+```
+
+Конструкция   try,   except   -  это обработка исключений,  в данном случае, нужна, чтобы наш контроллер не пытался бесконечно пересоздать pv и pvc для бэкапов, т к их жизненный цикл отличен от жизненного цикла mysql. 
+Далее нам необходимо реализовать создание бэкапов и восстановление из них. Для этого будут использоваться Job. По скольку при запуске Job, повторно ее запустить нельзя, намнужно реализовать логику удаления успешно законченных jobs c определенным именем.
+
+Для этого выше всех обработчиков событий     (под функций render_template) добавим следующую функцию:
+```
+def delete_success_jobs(mysql_instance_name):    
+    api = kubernetes.client.BatchV1Api()    
+    jobs = api.list_namespaced_job('default')
+    for job in jobs.items:        
+        jobname = job.metadata.nameif (jobname == f"backup-{mysql_instance_name}-job"):
+        if job.status.succeeded == 1:                
+            api.delete_namespaced_job(jobname,                          
+                                      'default',                                   propagation_policy='Background')
+
+```
+Также нам понадобится функция,  для ожидания пока наша   backup   job завершится,  чтобы дождаться пока backup выполнится перед удалением mysql deployment, svc, pv, pvc. 
+      Опишем ее:
+```
+      def wait_until_job_end(jobname):    
+         api = kubernetes.client.BatchV1Api()    
+         job_finished = False    
+         jobs = api.list_namespaced_job('default')
+         while (not job_finished) and \            
+                  any(job.metadata.name == jobname for job in jobs.items):
+             time.sleep(1)        
+             jobs = api.list_namespaced_job('default')
+             for job in jobs.items:
+                 if job.metadata.name == jobname:
+                    if job.status.succeeded == 1:                    
+                        job_finished = True
+```
+Добавим запуск backup-job и удаление выполненных jobs в  функцию delete_object_make_backup:
+```
+name = body['metadata']['name']    
+image = body['spec']['image']    
+password = body['spec']['password']    
+database = body['spec']['database']    
+
+delete_success_jobs(name)
+# Cоздаем backup job:    
+api = kubernetes.client.BatchV1Api()    
+backup_job = render_template('backup-job.yml.j2', {
+    'name': name,
+    'image': image,
+    'password': password,
+    'database': database})    
+api.create_namespaced_job('default', backup_job)    
+wait_until_job_end(f"backup-{name}-job")
+```
+
+Добавимгенерацию json изшаблонадля restore-job
+```
+ restore_job = render_template('restore-job.yml.j2', {
+    'name': name,
+    'image': image,
+    'password': password,
+    'database': database})
+```
+Добавим попытку восстановиться из бэкапов после deployment mysql:
+
+Пытаемся восстановиться из backup
+```
+try:
+    api = kubernetes.client.BatchV1Api()
+    api.create_namespaced_job('default', restore_job)
+except kubernetes.client.rest.ApiException:
+    pass
+```
+
+Добавим зависимость   restore-job   от объектов   mysql   (возле других owner_reference):
+
+```
+kopf.append_owner_reference(restore_job, owner=body)
+```
+
+
+Запускаю (издиректории build) и проверяю :
+
+``` 
+  kopf run  mysql-operator.py 
+  kubectl apply -f deploy/cr.yml
+```  
 
 
 
