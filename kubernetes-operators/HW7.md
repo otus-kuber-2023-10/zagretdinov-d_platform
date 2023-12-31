@@ -276,6 +276,7 @@ kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, n
 kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, name ) VALUES ( null, 'dataX2' );" otus-database
 kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from testX;" otus-database
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/5b2cd8a8-7433-422b-88e9-8c0563dae82a)
 
 
 
