@@ -37,6 +37,14 @@ def mysql_on_create(body, spec, **kwargs):
         'password': password,
         'database': database})
 
+    # Определяем, что созданные ресурсы являются дочерними к управляемому CustomResource:
+    kopf.append_owner_reference(persistent_volume, owner=body)
+    kopf.append_owner_reference(persistent_volume_claim, owner=body)  # addopt
+    kopf.append_owner_reference(service, owner=body)
+    kopf.sappend_owner_reference(deployment, owner=body)
+    kopf.append_owner_reference(restore_job, owner=body)
+    # ^ Таким образом при удалении CR удалятся все, связанные с ним pv,pvc,svc, deployments
+
     api = kubernetes.client.CoreV1Api()
     # Создаем mysql PV:
     api.create_persistent_volume(persistent_volume)
@@ -48,3 +56,7 @@ def mysql_on_create(body, spec, **kwargs):
     # Создаем mysql Deployment:
     api = kubernetes.client.AppsV1Api()
     api.create_namespaced_deployment('default', deployment)
+
+@kopf.on.delete('otus.homework', 'v1', 'mysqls')
+def delete_object_make_backup(body, **kwargs):
+    return {'message': "mysql and its children resources deleted"}

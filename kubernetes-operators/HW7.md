@@ -130,6 +130,45 @@ cr.yml был до этого применен, то вот:
 Вопрос: почему объект создался, хотя мы создали CR, до того, как запустили контроллер?
 Оператор проверяет наличе созданных CR. Объект создался автоматически для того чтобы после рестарта или удаления CustomResource оператор мог нормально функционировать.
 
+Если сделать ```kubectl delete mysqls.otus.homework mysqlinstance ```, то CustomResource будет удален, но наш контроллер ничего не
+сделает т. к обработки событий на удаление у нас нет.
+
+Удалим все ресурсы, созданные контроллером:
+```
+kubectl delete mysqls.otus.homework mysql-instance
+kubectl delete deployments.apps mysql-instance
+kubectl delete pvc mysql-instance-pvc
+kubectl delete pv mysql-instance-pv
+kubectl delete svc mysql-instance
+```
+
+Для удаления ресурсов,   сделаем   deployment,svc,pv,pvc   дочернимиресурсамик   mysql,  дляэтоговтелофункцииmysql_on_create,   послегенерации json манифестовдобавим:
+
+```
+# Определяем, что созданные ресурсыявляются дочерними куправляемому CustomResource:    
+kopf.append_owner_reference(persistent_volume, owner=body)    
+kopf.append_owner_reference(persistent_volume_claim, owner=body)  # addopt    
+kopf.append_owner_reference(service, owner=body)    
+kopf.append_owner_reference(deployment, owner=body)
+# ^ Такимобразомприудалении CR удалятсявсе, связанныесним pv,pvc,svc, deployments
+```
+Вконецфайладобавимобработкусобытияудаленияресурса mysql:
+
+```
+@kopf.on.delete('otus.homework', 'v1', 'mysqls')
+def delete_object_make_backup(body, **kwargs):
+    return {'message': "mysql and its children resources deleted"}
+```
+
+Перезапускаю контроллер, создаю и удаляю mysql-instance, проверяю что все pv, pvc, svc и deployments удалились.
+
+
+
+
+
+
+
+
 ### Деплой оператора
 
 Создаю в папке ./deploy:
