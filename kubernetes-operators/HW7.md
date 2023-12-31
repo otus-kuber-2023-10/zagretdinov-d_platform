@@ -266,6 +266,19 @@ kopf.append_owner_reference(restore_job, owner=body)
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fad806fe-41f6-40d2-998d-1cf4e72a9a27)
 
 
+Проверяю, что все работает, для этого заполняю базу созданного mysql-instance
+```
+export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}")
+###
+kubectl exec -it $MYSQLPOD -- mysql -u root -potuspassword -e "CREATE TABLE testX ( id smallint unsigned not null auto_increment, name varchar(20) not null, constraint pk_example primary key (id) );" otus-database
+###
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, name ) VALUES ( null, 'dataX' );" otus-database
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, name ) VALUES ( null, 'dataX2' );" otus-database
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from testX;" otus-database
+```
+
+
+
 
 
 
