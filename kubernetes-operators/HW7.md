@@ -263,6 +263,7 @@ kopf.append_owner_reference(restore_job, owner=body)
   kopf run  mysql-operator.py 
   kubectl apply -f deploy/cr.yml
 ```  
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/fad806fe-41f6-40d2-998d-1cf4e72a9a27)
 
 
 
