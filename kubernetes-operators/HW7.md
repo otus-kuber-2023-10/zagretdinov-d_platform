@@ -129,7 +129,8 @@ cr.yml был до этого применен, то вот:
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/c8103c0d-d795-495e-a233-d2b8bc6eb769)
 
-Вопрос: почему объект создался, хотя мы создали CR, до того, как запустили контроллер?
+___Вопрос:___ почему объект создался, хотя мы создали CR, до того, как запустили контроллер?
+___Ответ:___
 Оператор проверяет наличе созданных CR. Объект создался автоматически для того чтобы после рестарта или удаления CustomResource оператор мог нормально функционировать.
 
 Если сделать ```kubectl delete mysqls.otus.homework mysqlinstance ```, то CustomResource будет удален, но наш контроллер ничего не
@@ -154,7 +155,7 @@ kopf.append_owner_reference(service, owner=body)
 kopf.append_owner_reference(deployment, owner=body)
 # ^ Такимобразомприудалении CR удалятсявсе, связанныесним pv,pvc,svc, deployments
 ```
-Вконецфайладобавимобработкусобытияудаленияресурса mysql:
+В конец файла добавим обработку события удаления ресурса mysql:
 
 ```
 @kopf.on.delete('otus.homework', 'v1', 'mysqls')
@@ -169,7 +170,7 @@ def delete_object_make_backup(body, **kwargs):
 Теперь добавим создание   pv,   pvc  для   backup  и   restore   job. Для этого после создания deployment добавим следующий код:
 
 ```
-# Cоздаем PVC  и PV длябэкапов:
+# Cоздаем PVC  и PV для бэкапов:
 try:        
     backup_pv = render_template('backup-pv.yml.j2', {'name': name})        
     api = kubernetes.client.CoreV1Api()        
@@ -302,6 +303,7 @@ kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO test ( id, na
 ```
 kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/73cea870-9568-4f04-ac94-d243ff1a8dd0)
 
 
 
