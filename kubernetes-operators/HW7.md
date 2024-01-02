@@ -362,7 +362,12 @@ kubectl get jobs.batch
 
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9b77993a-271c-45d3-9bf4-b17d491d64bb)
 
-
+Немного ожидаю буквально секунды проверяю.
+```
+export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}")
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
+```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d79ec000-6149-4c00-80f3-08aa92961f9d)
 
 
 
