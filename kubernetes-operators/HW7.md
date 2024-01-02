@@ -56,12 +56,14 @@ kubectl describe mysqls.otus.homework mysql-instance
 
 
 __Устанавливаю зависимости:__
+```
 sudo apt install python3-pip
 sudo apt-get update
 sudo apt install python3-pip --fix-missing
 pip install kopf
 pip install kubernetes
 pip install jinja2
+```
 
 __MySQL контроллер__
 Согласно методичке ДЗ в папке kubernetes-operators/build создаю файл mysqloperator.py. Для написания контроллера будет использоваться kopf и в директории  kubernetes-operators/build/templates создаю шаблоны.
@@ -250,6 +252,22 @@ except kubernetes.client.rest.ApiException:
     pass
 ```
 
+### Деплой оператора
+Создаю в папке ./deploy:
+
+-  service-account.yml
+-  role.yml
+-  role-binding.yml
+-  deploy-operator.yml
+
+Отправляю на сервер и применяю.
+```
+kubectl apply -f ./deploy/service-account.yml
+kubectl apply -f ./deploy/role.yml
+kubectl apply -f ./deploy/role-binding.yml
+kubectl apply -f ./deploy/deploy-operator.yml
+```
+
 Добавим зависимость   restore-job   от объектов   mysql   (возле других owner_reference):
 
 ```
@@ -268,29 +286,24 @@ kopf.append_owner_reference(restore_job, owner=body)
 
 Проверяю, что все работает, для этого заполняю базу созданного mysql-instance
 ```
-export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}")
-###
-kubectl exec -it $MYSQLPOD -- mysql -u root -potuspassword -e "CREATE TABLE testX ( id smallint unsigned not null auto_increment, name varchar(20) not null, constraint pk_example primary key (id) );" otus-database
-###
-kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, name ) VALUES ( null, 'dataX' );" otus-database
-kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO testX ( id, name ) VALUES ( null, 'dataX2' );" otus-database
-kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from testX;" otus-database
+export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}
+
+kubectl exec -it $MYSQLPOD -- mysql -u root -potuspassword -e "CREATE TABLE test ( id smallint \
+  unsigned not null auto_increment, name varchar(20) not null, constraint pk_example primary key \
+  (id) );" otus-database
+
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO test ( id, name ) VALUES ( \
+  null, 'some data' );" otus-database
+
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO test ( id, name ) VALUES ( \
+  null, 'some data-2' );" otus-database
+```
+Посмастриваю содержимое таблицы:
+```
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
 ```
 
 
-
-
-
-
-
-### Деплой оператора
-
-Создаю в папке ./deploy:
-
--  service-account.yml
--  role.yml
--  role-binding.yml
--  deploy-operator.yml
 
 
 

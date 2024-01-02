@@ -1,2 +1,2 @@
 [node1] 
-test-kub ansible_host=devops@158.160.57.33
+test-kub ansible_host=devops@84.201.156.192
