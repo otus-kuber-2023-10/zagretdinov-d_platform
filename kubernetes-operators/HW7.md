@@ -399,5 +399,7 @@ Status:
 ```
 при запуске можно увидеть следующее значение.
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7d7af277-7050-4e39-83a8-998fb9641821)
+
 
 
