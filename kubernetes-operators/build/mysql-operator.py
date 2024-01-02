@@ -41,30 +41,36 @@ def delete_success_jobs(mysql_instance_name):
                                           'default',
                                           propagation_policy='Background')
 
-@kopf.on.update('otus.homework', 'v1', 'mysqls')
-# Функция, которая будет запускаться при изменении объектов тип MySQL:
-def mysql_on_update(body, spec, status, **kwargs):
-    name = status['mysql_on_create']['mysql-instance']
-    image = body['spec']['image']
-    password = spec.get('password', None)
-    database = body['spec']['database']
 
-    # Генерируем JSON манифесты для деплоя
-    deployment = render_template('mysql-deployment.yml.j2', {
-        'name': name,
-        'image': image,
-        'password': password,
-        'database': database})
+@kopf.on.create('otus.homework', 'v1', 'mysqls')
+# Функция, которая будет запускаться при создании объектов тип MySQL:
+def mysql_on_create(body, spec, **kwargs):
+ name = body['metadata']['name']
+ image = body['spec']['image'] # cохраняем в переменные содержимое описания MySQL из CR
+ password = body['spec']['password']
+ database = body['spec']['database']
+ storage_size = body['spec']['storage_size']
 
-    api = kubernetes.client.CoreV1Api()
+ # Генерируем JSON манифесты для деплоя
+ persistent_volume = render_template('mysql-pv.yml.j2',
+ {'name': name,
+ 'storage_size': storage_size})
+ persistent_volume_claim = render_template('mysql-pvc.yml.j2',
+ {'name': name,
+ 'storage_size': storage_size})
+ service = render_template('mysql-service.yml.j2', {'name': name})
 
-    # Создаем mysql Deployment:
-    api = kubernetes.client.AppsV1Api()
-    api.patch_namespaced_deployment(name,'default', deployment)
-   
-     # Update status 
-    return {'Message': 'mysql-instance updated', 'mysql-instance': name}
- 
+ deployment = render_template('mysql-deployment.yml.j2', {
+ 'name': name,
+ 'image': image,
+ 'password': password,
+ 'database': database})
+ restore_job = render_template('restore-job.yml.j2', {
+  'name': name,
+  'image': image,
+  'password': password,
+  'database': database})
+
  # Определяем, что созданные ресурсы являются дочерними к управляемому CustomResource:
  kopf.append_owner_reference(persistent_volume, owner=body)
  kopf.append_owner_reference(persistent_volume_claim, owner=body)  # addopt
