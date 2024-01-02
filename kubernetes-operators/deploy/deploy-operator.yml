@@ -15,5 +15,5 @@ spec:
       serviceAccountName: mysql-operator
       containers:
         - name: operator
-          image: "zhenkins/mysql-operator:v0.1"
+          image: "zagretdinov/otus:kubernetes-operators-mysql"
           imagePullPolicy: "Always"

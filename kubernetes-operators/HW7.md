@@ -305,14 +305,53 @@ kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus
 ```
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/73cea870-9568-4f04-ac94-d243ff1a8dd0)
 
-Удалим mysql-instance:
+__Собираю докер образ и запушу в докерхаб__
+```
+docker build -t zagretdinov/otus:kubernetes-operators-mysql kubernetes-operators/build/. && \
+docker push zagretdinov/otus:kubernetes-operators-mysql
+```
+
+Удаляю mysql-instance:
 ```
 kubectl delete mysqls.otus.homework mysql-instance
 ```
 Теперь ```kubectl get pv``` показывает, что PV для mysql больше нет, а
 ```kubectl get jobs.batch``` показывает:
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/165166b4-8f23-4515-928f-45872e295ac1)
 
+
+Заново задеплою оператор, уже на основе образа, который был запушен в докерхаб. образ путь добавил в deploy-operator.yml.
+```
+kubectl apply -f kubernetes-operators/deploy/crd.yml -f kubernetes-operators/deploy/service-account.yml -f  kubernetes-operators/deploy/role.yml -f  kubernetes-operators/deploy/role-binding.yml
+kubectl apply -f kubernetes-operators/deploy/deploy-operator.yml
+kubectl apply -f kubernetes-operators/deploy/cr.ym
+```
+- прверяю
+
+```
+export MYSQLPOD=$(kubectl get pods -l app=mysql-instance -o jsonpath="{.items[*].metadata.name}")
+kubectl exec -it $MYSQLPOD -- mysql -u root -potuspassword -e "CREATE TABLE test ( id smallint
+unsigned not null auto_increment, name varchar(20) not null, constraint pk_example primary key
+(id) );" otus-database
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO test ( id, name ) VALUES (
+null, 'some data' );" otus-database
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "INSERT INTO test ( id, name ) VALUES (
+null, 'some data-2' );" otus-database
+kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database
+```
+
+### Проверим, что все работает работает
+
+Удаляю mysql-instance:
+```
+kubectl delete mysqls.otus.homework mysql-instance
+kubectl delete pv mysql-instance-pv
+```
+Проверяю что все удалилось.
+
+```
+kubectl get pv
+kubectl get jobs.batch
+```
 
 
 
