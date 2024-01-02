@@ -370,8 +370,34 @@ kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/d79ec000-6149-4c00-80f3-08aa92961f9d)
 
 
+## Задание со * (1)
+• Исправить контроллер, чтобы он писал в status subresource
+• Описать изменения в README.md (показать код, объяснить, что он делает)
+• В README показать, что в status происходит запись
+• Например, при успешном создании mysql-instance, kubectl describe
 
+mysqls.otus.homework mysql-instance может показывать:
+```
+Status:
+  Kopf:
+  mysql_on_create:
+    Message: mysql-instance created without restore-job
+```
 
+В mysql-operator.py добавил в код функции переменную msg в зависимости от успешности restore-job и вывод этой переменной, которая попадает в Status.
+```
+# Пытаемся восстановиться из backup
+    try:
+        api = kubernetes.client.BatchV1Api()
+        api.create_namespaced_job('default', restore_job)
+        msg = "mysql-instance created with restore-job" 
+    except kubernetes.client.rest.ApiException:
+        msg = "mysql-instance created without restore-job" 
+        pass
+
+    return {'Message': msg, 'mysql-instance': name}
+```
+при запуске можно увидеть следующее значение.
 
 
 

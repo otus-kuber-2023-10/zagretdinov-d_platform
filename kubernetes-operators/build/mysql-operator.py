@@ -94,8 +94,12 @@ def mysql_on_create(body, spec, **kwargs):
  try:
      api = kubernetes.client.BatchV1Api()
      api.create_namespaced_job('default', restore_job)
+     msg = "mysql-instance created with restore-job" 
  except kubernetes.client.rest.ApiException:
+     msg = "mysql-instance created without restore-job"
      pass
+
+ return {'Message': msg, 'mysql-instance': name}
 
  # Cоздаем PVC и PV для бэкапов:
  try:
