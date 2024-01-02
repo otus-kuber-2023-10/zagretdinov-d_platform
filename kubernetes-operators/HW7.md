@@ -352,8 +352,15 @@ kubectl delete pv mysql-instance-pv
 kubectl get pv
 kubectl get jobs.batch
 ```
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ad67be02-f270-4f19-8113-3e15d39b1b15)
 
+### Создаю заного
+```
+kubectl apply -f kubernetes-operators/deploy/cr.yml
+kubectl get jobs.batch 
+```
 
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/9b77993a-271c-45d3-9bf4-b17d491d64bb)
 
 
 
