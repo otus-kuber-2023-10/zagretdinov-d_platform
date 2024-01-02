@@ -311,6 +311,7 @@ kubectl delete mysqls.otus.homework mysql-instance
 ```
 Теперь ```kubectl get pv``` показывает, что PV для mysql больше нет, а
 ```kubectl get jobs.batch``` показывает:
+![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/165166b4-8f23-4515-928f-45872e295ac1)
 
 
 
