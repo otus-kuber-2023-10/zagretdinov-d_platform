@@ -305,9 +305,12 @@ kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus
 ```
 ![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/73cea870-9568-4f04-ac94-d243ff1a8dd0)
 
-
-
-
+Удалим mysql-instance:
+```
+kubectl delete mysqls.otus.homework mysql-instance
+```
+Теперь ```kubectl get pv``` показывает, что PV для mysql больше нет, а
+```kubectl get jobs.batch``` показывает:
 
 
 
