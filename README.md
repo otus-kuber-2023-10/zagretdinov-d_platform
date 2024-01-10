@@ -17,4 +17,7 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 
 ### [6. Тема: Шаблонизация манифестов Kubernetes ](kubernetes-templating/HW6.md)
+
+
+### [7. Тема: Операторы, Custom Resource Definitions ](kubernetes-operators/HW7.md)
 ---
