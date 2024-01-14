@@ -20,4 +20,7 @@ _Кликните по ссылке чтоб просмотреть содерж
 
 
 ### [7. Тема: Операторы, Custom Resource Definitions ](kubernetes-operators/HW7.md)
+
+
+### [8. Тема: Мониторинг сервиса вкластере k8s ](kubernetes-monitoring/HW8.md)
 ---
