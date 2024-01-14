@@ -3,9 +3,9 @@
 
 __4 варианта сложности на выбор:__
 
-- Поставить все руками (I am death incarnate!). 
-- Поставить prometheus-operator через kubectl apply из офф. репозитория(Bring`em on!). 
-- Поставить при помощи helm2 (Don`t hurt me!). 
+- Поставить все руками (I am death incarnate!). 
+- Поставить prometheus-operator через kubectl apply из офф. репозитория(Bring`em on!)
+- Поставить при помощи helm2 (Don`t hurt me!) 
 - Поставить при помощи helm3 (Can i play, daddy?).
 
 __Собираю образа Nginx__
@@ -13,3 +13,6 @@ __Собираю образа Nginx__
 ```
 kubectl apply -f web-deployment.yaml
 kubectl apply -f web-service.yaml
+kubectl port-forward --address 0.0.0.0 svc/web 8000:80
+```
+
