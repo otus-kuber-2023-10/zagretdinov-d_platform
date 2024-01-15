@@ -90,3 +90,10 @@ kubectl apply -f grafana.yaml
 
 Загружаю [дашбоарт nginx](https://grafana.com/grafana/dashboards/12708-nginx/)
 
+в результате:
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/143a80eb-0805-47be-871e-5311b2a3031e)
+
+
+
+
