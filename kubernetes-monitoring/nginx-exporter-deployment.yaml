@@ -13,8 +13,10 @@ spec:
         app: nginx-exporter
     spec:
       containers:
-        - name: nginx-exporter
-          image: nginx/nginx-prometheus-exporter:0.11.0
-          args: ["-nginx.scrape-uri", "http://nginx-app/basic_status"]
+        - name: nginx-prometheus-exporter
+          image: "nginx/nginx-prometheus-exporter:0.11.0"
+          imagePullPolicy: Always
+          args: ["-nginx.scrape-uri", "http://web/basic_status"]
           ports:
             - containerPort: 9113
+              name: monitoring

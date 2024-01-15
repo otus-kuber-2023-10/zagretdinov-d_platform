@@ -19,11 +19,12 @@ spec:
     spec:
       containers:
       - name: web
-        image: zagretdinov/web:latest
+        image: zagretdinov/web:v2.0.0
         livenessProbe:
           tcpSocket:
-            port: 8080
+            port: 8000
         readinessProbe:
           httpGet:
             path: /index.html
-            port: 8080
+            port: 8000
+ 
