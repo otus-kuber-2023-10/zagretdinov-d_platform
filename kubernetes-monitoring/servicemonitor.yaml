@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: web
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: nginx-exporter
+  endpoints:
+  - port: monitoring
