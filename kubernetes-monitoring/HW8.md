@@ -15,7 +15,14 @@ kubectl apply -f web-deployment.yaml
 kubectl apply -f web-service.yaml
 kubectl port-forward --address 0.0.0.0 svc/web 8000:80
 ```
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2f74e84e-e4f6-4742-b729-fdb78c9541b3)
+
+__прокидываю порт и проверяю__
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ec203a9d-0c6a-42db-ab35-c8ef52c98492)
+
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0f4f21f8-b637-4d6b-bfdb-c1e5097fbe31)
 
+Отлично работает...
 
-![image](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/31de5afa-111c-410a-bff3-c2234c6f55be)
+
