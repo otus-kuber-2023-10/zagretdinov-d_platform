@@ -74,4 +74,19 @@ kubectl apply -f prometheus-deployment.yaml
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b4135246-8ae5-4488-bf8e-4895f8afe9cf)
 
+__Деплою Grafana__
+
+```
+kubectl apply -f grafana.yaml
+```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2378f689-e09e-4e4e-bb8f-6e116f76a226)
+
+Для первого входа admin:admin дальше создается новый пароль.
+
+В UI Grafana добавил Data Source http://prometheus-operated:9090
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/23d5ea11-83a7-4493-97ab-91c1c0758311)
+
+Загружаю дашбоарт eg. [click here](https://grafana.com/grafana/dashboards/12708-nginx/)
 
