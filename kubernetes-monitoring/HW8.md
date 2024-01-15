@@ -88,5 +88,5 @@ kubectl apply -f grafana.yaml
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/23d5ea11-83a7-4493-97ab-91c1c0758311)
 
-Загружаю дашбоарт eg. [click here](https://grafana.com/grafana/dashboards/12708-nginx/)
+Загружаю [дашбоарт nginx](https://grafana.com/grafana/dashboards/12708-nginx/)
 
