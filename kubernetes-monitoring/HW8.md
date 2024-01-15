@@ -15,6 +15,8 @@ __Сборка образа Nginx__
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/6d41c66d-82b5-411d-82c3-fc308f6b85c6)
 
+Создал и запушил в docker hub.
+
 ```
 docker build -t zagretdinov/web:v2.0.0 .
 docker push zagretdinov/web:v2.0.0
@@ -41,8 +43,35 @@ __прокидываю порт и проверяю__
 Отлично работает...
 
 __Создаю и применяю манифесты nginx-exporter-deployment.yaml и nginx-exporter-service.yaml__
+
 ```
 kubectl apply -f nginx-exporter-deployment.yaml
 kubectl apply -f nginx-exporter-service.yaml
 ```
+
+__Устанавливаю оператор prometheus и деплою__
+
+```
+LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
+curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/${LATEST}/bundle.yaml | kubectl create -f -
+kubectl wait --for=condition=Ready pods -l  app.kubernetes.io/name=prometheus-operator -n default
+```
+
+__Деплоим prometheus__
+
+```
+kubectl apply -f servicemonitor.yaml
+kubectl apply -f prometheus-deployment.yaml
+```
+
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/6b960cff-abfa-4cdb-ae04-22cb54aaa2b7)
+
+
+Проверяю ```kubectl get pods```
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/7c01f8cc-2978-4c1f-8759-ee38f1f0b9e7)
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/b4135246-8ae5-4488-bf8e-4895f8afe9cf)
+
 
