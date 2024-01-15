@@ -35,7 +35,8 @@ __прокидываю порт и проверяю__
 
 ![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/ec203a9d-0c6a-42db-ab35-c8ef52c98492)
 
-![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/0f4f21f8-b637-4d6b-bfdb-c1e5097fbe31)
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/6d012370-64a7-4064-9ede-0117b17cdb22)
+
 
 Отлично работает...
 
