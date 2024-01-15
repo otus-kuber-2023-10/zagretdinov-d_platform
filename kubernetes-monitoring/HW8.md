@@ -8,14 +8,28 @@ __4 варианта сложности на выбор:__
 - Поставить при помощи helm2 (Don`t hurt me!) 
 - Поставить при помощи helm3 (Can i play, daddy?).
 
-__Собираю образа Nginx__
-Создаю кастомный  образ  nginx из предыдущего ДЗ. Раннее был запушен в docker hub и прописан в манифест web-deployment.yaml.
+__Сборка образа Nginx__
+
+Создаю кастомный  образ  nginx из предыдущего ДЗ. Раннее был запушен в docker hub и прописан в манифесте web-deployment.yaml.
+Более подробно: скопировал папку web с предыдущего ДЗ и добавил в конфиг nginx модуль basic_status.
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/6d41c66d-82b5-411d-82c3-fc308f6b85c6)
+
+```
+docker build -t zagretdinov/web:v2.0.0 .
+docker push zagretdinov/web:v2.0.0
+```
+и добавляю в манифест.
+
+![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/a70f1058-eb62-408a-b0ab-3bc70b299b7f)
+
+применяю
+
 ```
 kubectl apply -f web-deployment.yaml
 kubectl apply -f web-service.yaml
 kubectl port-forward --address 0.0.0.0 svc/web 8000:80
 ```
-![изображение](https://github.com/otus-kuber-2023-10/zagretdinov-d_platform/assets/85208391/2f74e84e-e4f6-4742-b729-fdb78c9541b3)
 
 __прокидываю порт и проверяю__
 
