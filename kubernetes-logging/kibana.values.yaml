@@ -1,0 +1,16 @@
+ingress:
+  enabled: true
+  annotations: {
+    kubernetes.io/ingress.class: nginx
+  }
+  path: /
+  hosts: 
+    - kibana.51.250.73.74.nip.io
+
+nodeSelector:
+  yandex.cloud/node-group-id: catok10gi08fqpm32dcc
+tolerations:
+  - key: node-role
+    operator: Equal
+    value: infra
+    effect: NoSchedule
